@@ -32,11 +32,31 @@ app.get('/api/patients', function (req, res) {
   res.end(patients);
 });
 
+app.get('/api/doctors', function (req, res) {
+  var doctors = fs.readFileSync(path.join(__dirname, 'db', 'doctors.json'), 'utf8');
+  doctors = JSON.parse(doctors).map(d => ({ name : d.name, id : d.id }));
+  res.end(JSON.stringify(doctors));
+});
+
 app.post('/api/patients/appointment', function (req, res) {
   var patients = fs.readFileSync(path.join(__dirname, 'db', 'patients.json'), 'utf8');
   patients = JSON.parse(patients);
   patient = patients.find(patient => (patient.id === parseInt(req.body.studentID)));
   patient.appointments.push(req.body.appointment);
+  patients = JSON.stringify(patients);
+  fs.writeFile(path.join(__dirname, 'db', 'patients.json'), patients, 'utf8', function(){
+    res.end(JSON.stringify(patient));
+  })
+});
+
+app.patch('/api/patients/appointment', function(req, res) {
+  var patients = fs.readFileSync(path.join(__dirname, 'db', 'patients.json'), 'utf8');
+  patients = JSON.parse(patients);
+  patient = patients.find(patient => (patient.id === parseInt(req.body.studentID)));
+  appointment = patient.appointments.find(appointment => (
+    appointment.purpose === req.body.purpose && appointment.date === req.body.date
+  ));
+  appointment.declineReason = req.body.declineReason;
   patients = JSON.stringify(patients);
   fs.writeFile(path.join(__dirname, 'db', 'patients.json'), patients, 'utf8', function(){
     res.end(JSON.stringify(patient));

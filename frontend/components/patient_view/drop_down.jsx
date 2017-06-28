@@ -9,8 +9,13 @@ class DropDown extends React.Component {
   }
 
   renderData() {
-    let { component: Component, data } = this.props;
-    return data.map((d, i) => (<li key={i}><Component data={d}/></li>));
+    let { component: Component, data, onDelete, onUpdate } = this.props;
+    
+    return data.map((d, i) => (
+      <li key={i}>
+        <Component data={d} onDelete={onDelete} onUpdate={onUpdate}/>
+      </li>
+    ));
   }
 
   expandPanel () {

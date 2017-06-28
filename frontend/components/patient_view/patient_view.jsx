@@ -57,7 +57,13 @@ class PatientView extends React.Component {
 
   render() {
     let { appointmentFormOpen } = this.state;
-    let { currentUser, createAppointment, match } = this.props;
+    let {
+      currentUser,
+      updateAppointment,
+      deleteAppointment,
+      match
+    } = this.props;
+
     let patient = this.props.patients.find(p => {
       return (p.id === parseInt(match.params.patientId));
     })
@@ -74,7 +80,11 @@ class PatientView extends React.Component {
           <button onClick={this.openAppointmentForm}>Request Appointment</button>
           <button>Upload Files</button>
         </div>
-        <DropDown component={AppointmentPanel} data={patient.appointments} title="Appointments"/>
+        <DropDown component={AppointmentPanel}
+                  data={patient.appointments}
+                  title="Appointments"
+                  onUpdate={updateAppointment}
+                  onDelete={deleteAppointment}/>
         <DropDown component={FilePanel} data={patient.files} title="Files"/>
         <AppointmentForm isOpen={appointmentFormOpen}
                          currentUser={currentUser}

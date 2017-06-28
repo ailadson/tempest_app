@@ -11,10 +11,10 @@ const mapStateToProps = ({ session }) => {
   }
 };
 
-const mapDispatchToProps = (dispatch, { location }) => {
+const mapDispatchToProps = (dispatch) => {
   const formType = window.location.pathname.slice(1);
   return {
-    processForm: user => dispatch(loginDoctor(user)),
+    processForm: (user, cb) => loginDoctor(user, dispatch, cb),
     formType
   };
 };

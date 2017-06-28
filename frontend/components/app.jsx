@@ -8,6 +8,7 @@ import {
   HashRouter
 } from 'react-router-dom';
 
+import DoctorHomeContainer from './doctor_home/doctor_home_container';
 import LoginFormContainer from './login_form/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
@@ -20,7 +21,8 @@ const App = () => (
     </header>
     <Switch>
       <AuthRoute exact path="/" component={LoginFormContainer} />
-      <AuthRoute path="/doctor" component={LoginFormContainer} />
+      <AuthRoute exact path="/doctor" component={LoginFormContainer} />
+      <ProtectedRoute path="/doctor/home" component={DoctorHomeContainer} />
     </Switch>
   </div>
 );

@@ -2,10 +2,10 @@
   {
     "name" : "Jenkins Hermin",
     "emailAddress" : "doc1@test.com",
-    "password" : "p1",
+    "password" : "p1"
   }, {
-    "name" : "",
+    "name" : "Sarah Marie",
     "emailAddress" : "doc2@test.com",
-    "password" : "p2",
+    "password" : "p2"
   }
 ]

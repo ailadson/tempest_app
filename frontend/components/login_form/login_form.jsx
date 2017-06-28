@@ -27,14 +27,24 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
-    this.props.processForm({user});
+    this.props.processForm({user}, user => {
+      console.log(user);
+    });
   }
 
-  navLink() {
-    if (this.props.formType === 'login') {
-      return <Link to="/signup">sign up instead</Link>;
+  renderAltLoginLink() {
+    if (this.props.path === '/') {
+      return <Link to="/doctor">Are you a doctor? Login here.</Link>;
     } else {
-      return <Link to="/login">log in instead</Link>;
+      return <Link to="/">Are you a patient? Login here.</Link>;
+    }
+  }
+
+  renderMessage() {
+    if (this.props.path === '/') {
+      return <div className="login-msg">Patient Portal. Welcome to your health.</div>;
+    } else {
+      return <div className="login-msg">Doctor Portal. Manage your patients.</div>;
     }
   }
 
@@ -51,11 +61,10 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    console.log(this.props.path);
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to Health!
+          {this.renderMessage()}
           <br/>
           {this.renderErrors()}
           <div className="login-form">
@@ -79,6 +88,7 @@ class SessionForm extends React.Component {
             <input type="submit" value="Submit" />
           </div>
         </form>
+        {this.renderAltLoginLink()}
       </div>
     );
   }

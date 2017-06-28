@@ -13,13 +13,15 @@ export const receiveErrors = errors => ({
   errors
 });
 
-export const loginDoctor = user => dispatch => (
-  APIUtil.login(user, "doctor").then(user => (
+export const loginDoctor = (data, dispatch, cb) => {
+  APIUtil.login(data, "doctor", user => {
     dispatch(receiveCurrentUser(user))
-  ), err => (
+    if (cb) cb(user)
+  }, err => {
+    console.log(err);
     dispatch(receiveErrors(err.responseJSON))
-  ))
-);
+  });
+};
 
 export const loginPatient = user => dispatch => (
   APIUtil.login(user, "patient").then(user => (

@@ -1,8 +1,11 @@
-export const login = (user, type) => (
+export const login = (user, type, success, error) => (
   $.ajax({
     method: 'POST',
-    url: `/api/login?type=${type}`,
-    data: user
+    url: `/api/login`,
+    data: user,
+    dataType: 'json',
+    success,
+    error
   })
 );
 

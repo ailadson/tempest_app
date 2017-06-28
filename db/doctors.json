@@ -1,10 +1,12 @@
 [
   {
     "name" : "Jenkins Hermin",
+    "id" : 1,
     "emailAddress" : "doc1@test.com",
     "password" : "p1"
   }, {
     "name" : "Sarah Marie",
+    "id" : 2,
     "emailAddress" : "doc2@test.com",
     "password" : "p2"
   }

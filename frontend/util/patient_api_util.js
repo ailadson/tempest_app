@@ -13,7 +13,7 @@ export const createAppointment = (data, success, error) => (
     method: 'POST',
     url: `/api/patients/appointment`,
     dataType: 'json',
-    data,
+    data : data,
     success,
     error
   })

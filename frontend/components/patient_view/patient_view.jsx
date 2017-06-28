@@ -1,19 +1,37 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
+import DropDown from './drop_down';
+import AppointmentPanel from './appointment_panel';
+import FilePanel from './file_panel';
+
+import AppointmentForm from './appointment_form';
 
 class PatientView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      patient : this.props.patients.find(p => {
-        return (p.id === parseInt(this.props.match.params.patientId));
-      })
+      appointmentFormOpen : false,
+
     };
+
+    this.openAppointmentForm = this.openAppointmentForm.bind(this);
+    this.handleAppointmentSubmit = this.handleAppointmentSubmit.bind(this);
   }
 
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
+    });
+  }
+
+  openAppointmentForm () {
+    this.setState({ appointmentFormOpen : true });
+  }
+
+  handleAppointmentSubmit (data) {
+    this.props.createAppointment(data, () => {
+      this.setState({ appointmentFormOpen : false });
     });
   }
 
@@ -38,11 +56,29 @@ class PatientView extends React.Component {
   }
 
   render() {
-    let { patient } = this.state;
+    let { appointmentFormOpen } = this.state;
+    let { currentUser, createAppointment, match } = this.props;
+    let patient = this.props.patients.find(p => {
+      return (p.id === parseInt(match.params.patientId));
+    })
 
     return (
       <div className="patient-view-container">
         <h1>{patient.name}</h1>
+        <div className="student-view-info">
+          <h3>Date of Birth: {patient.dob}</h3>
+          <h3>Email Address: {patient.emailAddress}</h3>
+          <h3>Addess: {patient.mailingAddress}</h3>
+        </div>
+        <div className="student-view-buttons">
+          <button onClick={this.openAppointmentForm}>Request Appointment</button>
+          <button>Upload Files</button>
+        </div>
+        <DropDown component={AppointmentPanel} data={patient.appointments} title="Appointments"/>
+        <DropDown component={FilePanel} data={patient.files} title="Files"/>
+        <AppointmentForm isOpen={appointmentFormOpen}
+                         currentUser={currentUser}
+                         onSubmit={this.handleAppointmentSubmit}/>
       </div>
     );
   }

@@ -6,7 +6,8 @@ import {
 } from '../actions/patient_actions';
 
 const defaultState = Object.freeze({
-  patients : []
+  patients : [],
+  flag : false
   // errors: []
 });
 
@@ -22,7 +23,7 @@ const PatientReducer = (state = defaultState, action) => {
       const updatedPatients = state.patients.map(p => {
         return (p.emailAddress == target ? action.patient : p)
       });
-      return { patients : updatedPatients };
+      return { patients : updatedPatients, flag : !state.flag };
     default:
       return state;
   }

@@ -12,7 +12,8 @@ import PatientView from './patient_view';
 const mapStateToProps = ({ patient, session }) => {
   return {
     currentUser : session.currentUser,
-    patients : patient.patients
+    patients : patient.patients,
+    flag : patient.flag
   }
 };
 

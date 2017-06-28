@@ -27,9 +27,7 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
-    this.props.processForm({user}, user => {
-      console.log(user);
-    });
+    this.props.processForm({ user });
   }
 
   renderAltLoginLink() {

@@ -56,9 +56,11 @@ class PatientView extends React.Component {
   }
 
   render() {
+    let type = this.props.match.url.split("/")[1];
     let { appointmentFormOpen } = this.state;
     let {
       currentUser,
+      doctors,
       updateAppointment,
       deleteAppointment,
       match
@@ -77,11 +79,15 @@ class PatientView extends React.Component {
           <h3>Addess: {patient.mailingAddress}</h3>
         </div>
         <div className="student-view-buttons">
-          <button onClick={this.openAppointmentForm}>Request Appointment</button>
+          <button onClick={this.openAppointmentForm}>
+          {type === 'doctor' ? 'Scedule Appointment' : 'Request Appointment' }
+          </button>
           <button>Upload Files</button>
         </div>
         <DropDown component={AppointmentPanel}
+                  currentUser={currentUser}
                   data={patient.appointments}
+                  doctors={doctors}
                   title="Appointments"
                   onUpdate={updateAppointment}
                   onDelete={deleteAppointment}/>

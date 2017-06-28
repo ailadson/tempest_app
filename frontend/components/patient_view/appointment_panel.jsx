@@ -59,31 +59,41 @@ class AppointmentPanel extends React.Component {
   }
 
   renderCancelButton () {
-    let { date, time } = this.props.data;
+    let { date, time, doctorId } = this.props.data;
+    let { currentUser } = this.props;
     let type = this.props.match.url.split("/")[1];
     var selectedDate = Date.parse(date + ' ' + time);
     var now = new Date();
 
     if (selectedDate > now) {
-      if (type === 'doctor') {
+      if (type === 'doctor' && currentUser.id == doctorId) {
         return (<button onClick={this.declineAppointment}>Decline</button>);
-      } else {
+      } else if (type === 'patient') {
         return (<button onClick={this.cancelAppointment}>Cancel</button>);
       }
+    }
+    
+    return "";
+  }
+
+  renderDoctor(){
+    let { data, doctors } = this.props;
+    let doctor = doctors.find(d => (d.id == data.doctorId))
+    if (doctor){
+      return (<div>Doctor: {doctor.name}</div>);
     } else {
-      return "";
+      return (<div></div>);
     }
   }
 
   render() {
-    let { data } = this.props;
+    let { data, doctors } = this.props;
 
     return (
       <div className="appointment-panel">
         <div>Scheduled: {`${new Date(data.date).toDateString()} @ ${data.time}`}</div>
-        <div>
-          Reason: {data.purpose}
-        </div>
+        <div>Reason: {data.purpose}</div>
+        {this.renderDoctor()}
         <div>
           {this.renderDeclineReason() || this.renderCancelButton()}
         </div>

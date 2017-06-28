@@ -14,7 +14,11 @@ class DoctorHome extends React.Component {
   componentDidMount() {
     this.props.fetchPatients((p) => {
       console.log(p);
-    })
+    });
+
+    this.props.fetchDoctors((p) => {
+      console.log(p);
+    });
   }
 
   handlePatientClick(patient) {

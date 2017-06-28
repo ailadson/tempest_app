@@ -10,10 +10,11 @@ import {
 import PatientView from './patient_view';
 
 
-const mapStateToProps = ({ patient, session }) => {
+const mapStateToProps = ({ patient, session, doctor }) => {
   return {
     currentUser : session.currentUser,
     patients : patient.patients,
+    doctors : doctor.doctors,
     flag : patient.flag
   }
 };

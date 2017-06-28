@@ -9,11 +9,11 @@ class DropDown extends React.Component {
   }
 
   renderData() {
-    let { component: Component, data, onDelete, onUpdate } = this.props;
-    
+    let { component: Component, data, onDelete, onUpdate, doctors, currentUser } = this.props;
+
     return data.map((d, i) => (
       <li key={i}>
-        <Component data={d} onDelete={onDelete} onUpdate={onUpdate}/>
+        <Component data={d} doctors={doctors} currentUser={currentUser} onDelete={onDelete} onUpdate={onUpdate}/>
       </li>
     ));
   }

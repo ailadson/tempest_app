@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { fetchPatients } from '../../actions/patient_actions';
+import { fetchDoctors } from '../../actions/doctor_actions';
 import DoctorHome from './doctor_home';
 
 
@@ -13,7 +14,8 @@ const mapStateToProps = ({ patient, session }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPatients : (cb) => fetchPatients(dispatch, cb)
+    fetchPatients : (cb) => fetchPatients(dispatch, cb),
+    fetchDoctors : (cb) => fetchDoctors(dispatch, cb)
   };
 };
 

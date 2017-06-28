@@ -7,10 +7,13 @@ import merge from 'lodash/merge';
 class AppointmentPanel extends React.Component {
   constructor(props){
     super(props);
+    let { currentUser, match } = this.props;
+    let type = match.url.split("/")[1];
     this.state = {
       date : '',
       time : '',
-      purpose : ''
+      purpose : '',
+      doctorId : (type === 'doctor' ? currentUser.id : '')
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,6 +60,21 @@ class AppointmentPanel extends React.Component {
     }
   }
 
+  renderDoctorSelect () {
+    let { currentUser, match } = this.props;
+    let type = match.url.split("/")[1];
+
+    if (type === 'doctor') {
+      return (
+        <label>
+          Doctor: <input type='text' readOnly value={`${currentUser.name} (you)`} />
+        </label>
+      )
+    } else {
+
+    }
+  }
+
   render() {
     let { isOpen } = this.props;
 
@@ -65,6 +83,7 @@ class AppointmentPanel extends React.Component {
         <div>
           <label>Date: <input type='date' onChange={this.update('date')} /></label>
           <label>Time: <input type='time' onChange={this.update('time')} /></label>
+          {this.renderDoctorSelect()}
           <label>
             What wrong?: <textarea onChange={this.update('purpose')}></textarea>
           </label>

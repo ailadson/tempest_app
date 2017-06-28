@@ -1,0 +1,11 @@
+[
+  {
+    "name" : "Jenkins Hermin",
+    "emailAddress" : "doc1@test.com",
+    "password" : "p1",
+  }, {
+    "name" : "",
+    "emailAddress" : "doc2@test.com",
+    "password" : "p2",
+  }
+]

@@ -2,6 +2,7 @@
 
 * only upload PDFs
 * form styling
+* add loading screen
 
 # Tempus App Walkthrough
 

@@ -23,7 +23,8 @@ const modalStyle = {
     outline                    : 'none',
     padding                    : '20px',
     margin                     : 'auto',
-    width                      : '540px',
+    width                      : '50%',
+    minWidth                   : '400px',
     transform                  : 'translateY(-50%)'
   }
 }

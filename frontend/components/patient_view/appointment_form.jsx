@@ -100,7 +100,7 @@ class AppointmentPanel extends React.Component {
       <Modal isOpen={isOpen} contentLabel="Appointment Form" style={style}>
         <button onClick={closeForm} style={{float:'right'}}>Close</button>
         <div className="form-container">
-          <h1>Schedule an Appointment</h1>
+          <h2>Schedule an Appointment</h2>
           <label>
             Date: <input type='date' onChange={this.update('date')} />
           </label>

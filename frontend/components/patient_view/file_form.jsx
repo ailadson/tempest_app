@@ -67,7 +67,7 @@ class FileForm extends React.Component {
       <Modal isOpen={isOpen} contentLabel="Appointment Form" style={style}>
         <div className="form-container">
           <button onClick={closeForm} style={{float:'right'}}>Close</button>
-          <h1>Upload a File</h1>
+          <h2>Upload a File</h2>
           <label>
             Filename: <input type='text' onChange={this.update('name')} />
           </label>

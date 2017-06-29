@@ -8,8 +8,10 @@ import '../../style/doctor_home.scss';
 class DoctorHome extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchFilter : '' };
+    this.state = { searchFilter : '', asideExpanded : false };
     this.handlePatientClick = this.handlePatientClick.bind(this);
+    this.toggleAside = this.toggleAside.bind(this);
+    this.closeAside = this.closeAside.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +31,23 @@ class DoctorHome extends React.Component {
     });
   }
 
+  controlScroll(node) {
+    if (node) {
+      node.addEventListener('scroll', (e) => {
+        e.stopPropagation();
+        console.log('scroll!');
+      });
+    }
+  }
+
+  toggleAside(){
+    this.setState({ asideExpanded : !this.state.asideExpanded });
+  }
+
+  closeAside(){
+    this.setState({ asideExpanded : false });
+  }
+
   renderPatients() {
       let searchFilter = this.state.searchFilter.toLowerCase();
 
@@ -43,22 +62,33 @@ class DoctorHome extends React.Component {
       return filteredPatients.map((patient, i) => {
         return (
           <li key={i}>
-            <Link to={`${this.props.match.url}/${patient.id}`}>{patient.name}</Link>
+            <Link to={`${this.props.match.url}/${patient.id}`}
+                  onClick={this.closeAside}>
+              {patient.name}
+              </Link>
           </li>
         );
       });
   }
 
   render() {
+    let asideClassName = (this.state.asideExpanded ? "" : "aside-minimized");
+    let asideExpandText = (this.state.asideExpanded ? "Hide Patients" : "Show Patients");
+
     return (
       <div className="doctor-home-container group">
-        <aside>
-          <input type="text"
-                 className="doctor-search-bar"
-                 placeholder="Search By Name"
-                 onChange={this.update('searchFilter')} />
-          <h3>Paitents</h3>
-          <ul>{this.renderPatients()}</ul>
+        <aside ref={this.controlScroll}>
+          <div className={"aside-patients " + asideClassName}>
+            <input type="text"
+              className="doctor-search-bar"
+              placeholder="Search By Name"
+              onChange={this.update('searchFilter')} />
+            <h3>Paitents</h3>
+            <ul>{this.renderPatients()}</ul>
+          </div>
+          <div className="drop-down-link" onClick={this.toggleAside}>
+            {asideExpandText}
+          </div>
         </aside>
         <section>
           <Route path={`${this.props.match.url}/:patientId`} component={PatientViewContainer} />

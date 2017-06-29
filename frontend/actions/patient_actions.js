@@ -43,9 +43,28 @@ export const updateAppointment = (data, dispatch, cb) => {
   });
 };
 
+export const deleteAppointment = (data, dispatch, cb) => {
+  APIUtil.deleteAppointment(data, patient => {
+    dispatch(updatePatient(patient))
+    if (cb) cb(patient);
+  }, err => {
+    console.log("ERROR");
+    console.log(err);
+  });
+};
 
 export const createFile = (data, dispatch, cb) => {
-  APIUtil.createFile(patient => {
+  APIUtil.createFile(data, patient => {
+    dispatch(updatePatient(patient))
+    if (cb) cb(patient);
+  }, err => {
+    console.log("ERROR");
+    console.log(err);
+  });
+};
+
+export const deleteFile = (data, dispatch, cb) => {
+  APIUtil.deleteFile(data, patient => {
     dispatch(updatePatient(patient))
     if (cb) cb(patient);
   }, err => {

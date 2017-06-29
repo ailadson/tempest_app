@@ -4,7 +4,8 @@ import {
   createAppointment,
   updateAppointment,
   deleteAppointment,
-  createFile
+  createFile,
+  deleteFile
 } from '../../actions/patient_actions';
 
 import PatientView from './patient_view';
@@ -24,7 +25,8 @@ const mapDispatchToProps = (dispatch) => {
     createAppointment : (data, cb) => createAppointment(data, dispatch, cb),
     updateAppointment : (data, cb) => updateAppointment(data, dispatch, cb),
     deleteAppointment : (data, cb) => deleteAppointment(data, dispatch, cb),
-    createFile : (data, cb) => createFile(data, dispatch, cb)
+    createFile : (data, cb) => createFile(data, dispatch, cb),
+    deleteFile : (data, cb) => deleteFile(data, dispatch, cb)
   };
 };
 

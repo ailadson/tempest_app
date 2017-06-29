@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
 
-class AppointmentPanel extends React.Component {
+class AppointmentForm extends React.Component {
   constructor(props){
       super(props);
       this.state = {
@@ -72,7 +72,7 @@ class AppointmentPanel extends React.Component {
         return (<button onClick={this.cancelAppointment}>Cancel</button>);
       }
     }
-    
+
     return "";
   }
 
@@ -108,4 +108,4 @@ class AppointmentPanel extends React.Component {
   }
 }
 
-export default withRouter(AppointmentPanel);
+export default withRouter(AppointmentForm);

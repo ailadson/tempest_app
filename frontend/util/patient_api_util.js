@@ -13,7 +13,18 @@ export const createAppointment = (data, success, error) => (
     method: 'POST',
     url: `/api/patients/appointment`,
     dataType: 'json',
-    data : data,
+    data,
+    success,
+    error
+  })
+);
+
+export const deleteAppointment = (data, success, error) => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/patients/appointment`,
+    dataType: 'json',
+    data,
     success,
     error
   })
@@ -33,6 +44,18 @@ export const updateAppointment = (data, success, error) => (
 export const createFile = (data, success, error) => (
   $.ajax({
     method: 'POST',
+    url: `/api/patients/file`,
+    dataType: 'json',
+    data,
+    success,
+    error
+  })
+);
+
+
+export const deleteFile = (data, success, error) => (
+  $.ajax({
+    method: 'DELETE',
     url: `/api/patients/file`,
     dataType: 'json',
     data,

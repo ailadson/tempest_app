@@ -6,17 +6,20 @@ import AppointmentPanel from './appointment_panel';
 import FilePanel from './file_panel';
 
 import AppointmentForm from './appointment_form';
+import FileForm from './file_form';
 
 class PatientView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       appointmentFormOpen : false,
-
+      fileFormOpen : false
     };
 
     this.openAppointmentForm = this.openAppointmentForm.bind(this);
+    this.openFileForm = this.openFileForm.bind(this);
     this.handleAppointmentSubmit = this.handleAppointmentSubmit.bind(this);
+    this.handleFileSubmit = this.handleFileSubmit.bind(this);
   }
 
   update(field) {
@@ -29,9 +32,19 @@ class PatientView extends React.Component {
     this.setState({ appointmentFormOpen : true });
   }
 
+  openFileForm () {
+    this.setState({ fileFormOpen : true });
+  }
+
   handleAppointmentSubmit (data) {
     this.props.createAppointment(data, () => {
       this.setState({ appointmentFormOpen : false });
+    });
+  }
+
+  handleFileSubmit (data) {
+    this.props.createFile(data, () => {
+      this.setState({ fileFormOpen : false });
     });
   }
 
@@ -57,12 +70,13 @@ class PatientView extends React.Component {
 
   render() {
     let type = this.props.match.url.split("/")[1];
-    let { appointmentFormOpen } = this.state;
+    let { appointmentFormOpen, fileFormOpen } = this.state;
     let {
       currentUser,
       doctors,
       updateAppointment,
       deleteAppointment,
+      deleteFile,
       match
     } = this.props;
 
@@ -82,7 +96,7 @@ class PatientView extends React.Component {
           <button onClick={this.openAppointmentForm}>
           {type === 'doctor' ? 'Scedule Appointment' : 'Request Appointment' }
           </button>
-          <button>Upload Files</button>
+          <button onClick={this.openFileForm}>Upload Files</button>
         </div>
         <DropDown component={AppointmentPanel}
                   currentUser={currentUser}
@@ -91,10 +105,16 @@ class PatientView extends React.Component {
                   title="Appointments"
                   onUpdate={updateAppointment}
                   onDelete={deleteAppointment}/>
-        <DropDown component={FilePanel} data={patient.files} title="Files"/>
+        <DropDown component={FilePanel}
+                  data={patient.files}
+                  title="Files"
+                  onDelete={deleteFile}/>
         <AppointmentForm isOpen={appointmentFormOpen}
                          currentUser={currentUser}
                          onSubmit={this.handleAppointmentSubmit}/>
+        <FileForm isOpen={fileFormOpen}
+                  currentUser={currentUser}
+                  onSubmit={this.handleFileSubmit}/>
       </div>
     );
   }

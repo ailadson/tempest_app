@@ -17,6 +17,10 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 const App = () => (
   <div className="app-container">
     <HeaderContainer/>
+    <video src="https://assets.securetempus.com/website/efa53d066f1b3b4ad9ad0a758d8be67471a0cfe1/1457490542e9515b1fe39a53dfa5ea64.mp4"
+           autoPlay
+           loop>
+    </video>
     <Switch>
       <AuthRoute exact path="/" component={LoginFormContainer} />
       <AuthRoute exact path="/doctor" component={LoginFormContainer} />

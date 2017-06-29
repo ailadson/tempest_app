@@ -1,12 +1,15 @@
 .login-form-container {
-  text-align: center;
+  color: white;
+  padding-left: 6em;
+  display: inline-block;
+  background-color: rgba(0,0,0,0.9);
 }
 
 .login-form-box {
   width: 21em;
-  margin: auto;
   text-align: left;
   margin-top: 50px;
+  margin-bottom: 11px;
 }
 
 .login-msg {
@@ -24,6 +27,11 @@
 
 .login-form-container a {
   font-size: .8em;
+  color: white;
+}
+
+.login-form-container a:hover {
+  color: aliceblue;
 }
 
 .login-errors {

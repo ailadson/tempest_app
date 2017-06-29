@@ -28,7 +28,7 @@
 .drop-down-container section {
   float: none !important;
   max-height: 0px;
-  -webkit-transition: height 1s !important;
+  -webkit-transition: max-height 1s !important;
   transition: max-height 1s !important;
   width: 80% !important;
   margin: auto !important;
@@ -51,7 +51,7 @@
 }
 
 .expanded {
-  max-height: 3000px !important;
+  max-height: 1000px !important;
   overflow-y: scroll;
 }
 

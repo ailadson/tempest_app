@@ -1,15 +1,20 @@
 .site-header {
-  background-color: #d5a458;
+  background-color: rgba(0,0,0,0.5);
   padding: 10px;
-  font-size: 1.75em;
+  font-size: 3.5em;
   position: relative;
   height: 5%;
   min-height: 1.25em;
+  color: white;
+}
+
+.site-header span {
+  margin-left: 1em;
 }
 
 .site-header button {
   float: right;
-  font-size: .7em;
+  font-size: .4em;
   position: absolute;
   right: 15px;
   top: 50%;

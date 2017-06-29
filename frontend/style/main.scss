@@ -8,3 +8,11 @@ body, html, #root, .app-container {
 button {
   font-family: 'Raleway', sans-serif;
 }
+
+video {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -3;
+  top: 0;
+}

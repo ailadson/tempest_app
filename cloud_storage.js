@@ -1,11 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 var cloudinary = require('cloudinary');
+
 var secrets = JSON.parse(fs.readFileSync(path.join(__dirname, 'secrets.json'), 'utf8'));
-
-
-
-
 
 module.exports = {
   upload : function(data, cb) {
@@ -18,6 +15,5 @@ module.exports = {
     cloudinary.uploader.upload(data, function(result) {
       cb(result);
     });
-
   }
 }

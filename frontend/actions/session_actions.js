@@ -13,26 +13,38 @@ export const receiveErrors = errors => ({
   errors
 });
 
+export const fetchCurrentUser = (dispatch, cb, err) => {
+  APIUtil.fetchCurrentUser(user => {
+    dispatch(receiveCurrentUser(user))
+    if (cb) cb(user);
+  }, e => {
+    if (err) err()
+  });
+};
+
 export const loginDoctor = (data, dispatch, cb) => {
   APIUtil.login(data, "doctor", user => {
     dispatch(receiveCurrentUser(user))
     if (cb) cb(user)
   }, err => {
     console.log(err);
-    dispatch(receiveErrors(err.responseJSON))
+    dispatch(receiveErrors(err.responseJSON.errors))
   });
 };
 
-export const loginPatient = user => dispatch => (
-  APIUtil.login(user, "patient").then(user => (
+export const loginPatient = (user, dispatch, cb) => (
+  APIUtil.login(user, "patient", user => (
     dispatch(receiveCurrentUser(user))
   ), err => (
-    dispatch(receiveErrors(err.responseJSON))
+    dispatch(receiveErrors(err.responseJSON.errors))
   ))
 );
 
-export const logout = () => dispatch => (
-  APIUtil.logout().then(user => (
-    dispatch(receiveCurrentUser(null))
-  ))
-);
+export const logout = (dispatch, cb) => {
+  APIUtil.logout(() => {
+    dispatch(receiveCurrentUser(null));
+    if (cb) cb();
+  }, (err) => {
+    console.log(err);
+  });
+};

@@ -111,7 +111,8 @@ class PatientView extends React.Component {
                   onDelete={deleteFile}/>
         <AppointmentForm isOpen={appointmentFormOpen}
                          currentUser={currentUser}
-                         onSubmit={this.handleAppointmentSubmit}/>
+                         onSubmit={this.handleAppointmentSubmit}
+                         doctors={doctors}/>
         <FileForm isOpen={fileFormOpen}
                   currentUser={currentUser}
                   onSubmit={this.handleFileSubmit}/>

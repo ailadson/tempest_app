@@ -3,6 +3,7 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
 var route = require('./routes');
 
 var app = express();
@@ -14,6 +15,7 @@ app.set('views', './views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bodyParser.json({limit: '50mb'}));
+app.use(cookieParser());
 
 
 app.all('/api/*', function(req, res, next) {

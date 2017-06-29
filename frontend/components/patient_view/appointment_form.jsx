@@ -29,7 +29,7 @@ class AppointmentPanel extends React.Component {
   validate(data) {
     let { date, time, purpose } = this.state;
 
-    if(!date || !time || !purpose) {
+    if(!date || !time || !purpose || !doctorId) {
       alert("Must fill in all fields");
       return false;
     }
@@ -60,6 +60,16 @@ class AppointmentPanel extends React.Component {
     }
   }
 
+  renderDoctorOptions() {
+    let { doctors } = this.props;
+
+    return doctors.map((d, i) => {
+      return(
+        <option key={i} value={d.id}>{d.name}</option>
+      )
+    });
+  }
+
   renderDoctorSelect () {
     let { currentUser, match } = this.props;
     let type = match.url.split("/")[1];
@@ -71,7 +81,15 @@ class AppointmentPanel extends React.Component {
         </label>
       )
     } else {
-
+      return (
+        <label>
+          Doctor:
+          <select onChange={this.update('doctorId')}>
+            <option value=""></option>
+            {this.renderDoctorOptions()}
+          </select>
+        </label>
+      )
     }
   }
 

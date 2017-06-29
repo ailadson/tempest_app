@@ -1,14 +1,20 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      emailAddress: '',
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (!this.props.loggedIn) {
+      this.props.fetchCurrentUser();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,8 +32,11 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let { loginDoctor, loginPatient } = this.props;
     const user = this.state;
-    this.props.processForm({ user });
+    const formType = window.location.pathname.slice(1);
+    let login = (formType === 'doctor' ? loginDoctor : loginPatient);
+    login({ user });
   }
 
   renderAltLoginLink() {
@@ -48,7 +57,7 @@ class SessionForm extends React.Component {
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="login-errors">
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
             {error}
@@ -69,8 +78,8 @@ class SessionForm extends React.Component {
             <br/>
             <label>Username:
               <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
+                value={this.state.emailAddress}
+                onChange={this.update('emailAddress')}
                 className="login-input"
               />
             </label>

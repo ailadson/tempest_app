@@ -36,9 +36,9 @@ class AppointmentForm extends React.Component {
   }
 
   cancelAppointment() {
-    let { date, purpose } = this.props.data;
+    let { currentUser, data } = this.props;
 
-    this.props.onDelete({ date, purpose }, ()=> {
+    this.props.onDelete({ appointment : data, studentID : currentUser.id }, ()=> {
       console.log('deleted!');
     });
   }

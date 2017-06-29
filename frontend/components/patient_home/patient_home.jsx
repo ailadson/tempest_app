@@ -4,22 +4,27 @@ import { Link, withRouter, Route } from 'react-router-dom';
 import PatientViewContainer from '../patient_view/patient_view_container';
 
 
-class DoctorHome extends React.Component {
+class PatientHome extends React.Component {
   constructor(props) {
     super(props);
     this.state = { searchFilter : '' };
-    this.handlePatientClick = this.handlePatientClick.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchPatients();
-    this.props.fetchDoctors();
-  }
+    let { currentUser } = this.props;
+    let loadCount = 0;
 
-  handlePatientClick(patient) {
-    return () => {
-      this.props.history.push(`home/${patient.id}`)
-    }
+    this.props.fetchPatients((p) => {
+      if (++loadCount === 2) {
+        this.props.history.push(`home/${currentUser.id}`)
+      };
+    });
+
+    this.props.fetchDoctors((p) => {
+      if (++loadCount === 2) {
+        this.props.history.push(`home/${currentUser.id}`)
+      };
+    });
   }
 
   update(field) {
@@ -50,17 +55,11 @@ class DoctorHome extends React.Component {
 
   render() {
     return (
-      <div className="doctor-home-container">
-        <aside>
-          <input type="text"
-                 className="doctor-search-bar"
-                 onChange={this.update('searchFilter')} />
-          <ul>{this.renderPatients()}</ul>
-        </aside>
+      <div className="patient-home-container">
         <Route path={`${this.props.match.url}/:patientId`} component={PatientViewContainer} />
       </div>
     );
   }
 }
 
-export default withRouter(DoctorHome);
+export default withRouter(PatientHome);

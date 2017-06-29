@@ -6,6 +6,7 @@ class FilePanel extends React.Component {
     super(props);
     this.onDelete = this.onDelete.bind(this);
   }
+
   onDelete () {
     let studentID = this.props.match.url.split('/')[3];
     let data = { file : this.props.data, studentID };
@@ -13,6 +14,15 @@ class FilePanel extends React.Component {
       console.log("File Deleted!");
     });
   }
+
+  renderDeleteButton() {
+    let type = this.props.match.url.split('/')[1];
+
+    if (type === 'doctor') {
+      return(<button onClick={this.onDelete}>Delete File</button>)
+    }
+  }
+
   render() {
     let { data } = this.props;
 
@@ -21,7 +31,7 @@ class FilePanel extends React.Component {
         <div>Name: {`${data.name}`}</div>
         <div>Uploaded: {`${data.date}`}</div>
         <iframe src={data.url}></iframe>
-        <button onClick={this.onDelete}>Delete File</button>
+        {this.renderDeleteButton()}
       </div>
     );
   }

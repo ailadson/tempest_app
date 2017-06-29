@@ -15,7 +15,6 @@ export const updatePatient = patient => ({
 
 export const fetchPatients = (dispatch, cb) => {
   APIUtil.fetchPatients(patients => {
-    console.log(patients);
     dispatch(receiveAllPatients(patients))
     if (cb) cb(patients);
   }, err => {

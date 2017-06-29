@@ -3,6 +3,7 @@ import { Link, withRouter, Route } from 'react-router-dom';
 
 import PatientViewContainer from '../patient_view/patient_view_container';
 
+import '../../style/doctor_home.scss';
 
 class DoctorHome extends React.Component {
   constructor(props) {
@@ -50,14 +51,18 @@ class DoctorHome extends React.Component {
 
   render() {
     return (
-      <div className="doctor-home-container">
+      <div className="doctor-home-container group">
         <aside>
           <input type="text"
                  className="doctor-search-bar"
+                 placeholder="Search By Name"
                  onChange={this.update('searchFilter')} />
+          <h3>Paitents</h3>
           <ul>{this.renderPatients()}</ul>
         </aside>
-        <Route path={`${this.props.match.url}/:patientId`} component={PatientViewContainer} />
+        <section>
+          <Route path={`${this.props.match.url}/:patientId`} component={PatientViewContainer} />
+        </section>
       </div>
     );
   }

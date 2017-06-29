@@ -28,8 +28,8 @@ class FilePanel extends React.Component {
 
     return (
       <div className="file-panel">
-        <div>Name: {`${data.name}`}</div>
-        <div>Uploaded: {`${data.date}`}</div>
+        <div>Filename: {`${data.name}`}</div>
+        <div>Uploaded: {`${new Date(data.date).toDateString()}`}</div>
         <iframe src={data.url}></iframe>
         {this.renderDeleteButton()}
       </div>

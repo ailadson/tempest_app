@@ -27,7 +27,7 @@ class AppointmentPanel extends React.Component {
   }
 
   validate(data) {
-    let { date, time, purpose } = this.state;
+    let { date, time, purpose, doctorId } = this.state;
 
     if(!date || !time || !purpose || !doctorId) {
       alert("Must fill in all fields");

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 
+import '../../style/login_form.scss';
+
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
@@ -49,9 +51,9 @@ class SessionForm extends React.Component {
 
   renderMessage() {
     if (this.props.path === '/') {
-      return <div className="login-msg">Patient Portal. Welcome to your health.</div>;
+      return <div className="login-msg">Patient Portal.<br/>Manage your health.</div>;
     } else {
-      return <div className="login-msg">Doctor Portal. Manage your patients.</div>;
+      return <div className="login-msg">Doctor Portal.<br/>Manage your patients.</div>;
     }
   }
 
@@ -76,23 +78,21 @@ class SessionForm extends React.Component {
           {this.renderErrors()}
           <div className="login-form">
             <br/>
-            <label>Username:
-              <input type="text"
-                value={this.state.emailAddress}
-                onChange={this.update('emailAddress')}
-                className="login-input"
-              />
+            <label>Username: <input type="text"
+                                    value={this.state.emailAddress}
+                                    onChange={this.update('emailAddress')}
+                                    className="login-input"
+                                    />
             </label>
             <br/>
-            <label>Password:
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="login-input"
-              />
+            <label>Password: <input type="password"
+                                    value={this.state.password}
+                                    onChange={this.update('password')}
+                                    className="login-input"
+                                    />
             </label>
             <br/>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Login" />
           </div>
         </form>
         {this.renderAltLoginLink()}

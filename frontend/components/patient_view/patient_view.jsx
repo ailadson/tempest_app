@@ -8,6 +8,8 @@ import FilePanel from './file_panel';
 import AppointmentForm from './appointment_form';
 import FileForm from './file_form';
 
+import '../../style/patient_view.scss';
+
 class PatientView extends React.Component {
   constructor(props) {
     super(props);
@@ -87,16 +89,16 @@ class PatientView extends React.Component {
     return (
       <div className="patient-view-container">
         <h1>{patient.name}</h1>
-        <div className="student-view-info">
+        <div className="patient-view-info">
           <h3>Date of Birth: {patient.dob}</h3>
           <h3>Email Address: {patient.emailAddress}</h3>
           <h3>Addess: {patient.mailingAddress}</h3>
         </div>
-        <div className="student-view-buttons">
+        <div className="patient-view-buttons">
           <button onClick={this.openAppointmentForm}>
-          {type === 'doctor' ? 'Scedule Appointment' : 'Request Appointment' }
+          {type === 'doctor' ? 'Schedule Appointment' : 'Request Appointment' }
           </button>
-          <button onClick={this.openFileForm}>Upload Files</button>
+          <button onClick={this.openFileForm}>Upload File</button>
         </div>
         <DropDown component={AppointmentPanel}
                   currentUser={currentUser}

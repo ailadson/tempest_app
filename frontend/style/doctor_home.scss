@@ -1,0 +1,61 @@
+.doctor-home-container {
+  position: relative;
+  height: 95%;
+}
+
+.group:after{
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.doctor-home-container aside {
+  height: 100%;
+  float: left;
+  background-color: #79cedc;
+  position: absolute;
+  overflow-y: scroll;
+  width: 20%;
+  min-width: 11em;
+  text-align: center;
+}
+
+.doctor-home-container aside h3 {
+  margin: 10px;
+}
+
+.doctor-home-container section {
+  float: right;
+  width: 80%;
+  background-color: grey;
+}
+
+.doctor-home-container aside input {
+  margin-top: 15px;
+  padding: 3px 4px;
+  width: 85%;
+  font-size: .8em;
+}
+
+.doctor-home-container aside ul {
+  list-style: none;
+  padding: 12px 0px;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.doctor-home-container aside li {
+  padding-bottom: 7px;
+}
+
+.doctor-home-container aside li a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.doctor-home-container aside li a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: grey;
+}

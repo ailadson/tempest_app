@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './app';
 
+import '../style/main.scss';
+
+
 const Root = ({ store }) => (
   <Provider store={store}>
     <BrowserRouter>

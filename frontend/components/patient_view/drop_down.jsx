@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../../style/drop_down.scss';
+
 class DropDown extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ class DropDown extends React.Component {
     let { expanded } = this.state;
 
     return (
-      <div className="drop_down-container">
+      <div className="drop-down-container">
         <header>{title}</header>
         <section ref="panel">
           <ul>{this.renderData()}</ul>

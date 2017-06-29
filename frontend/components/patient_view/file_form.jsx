@@ -61,13 +61,21 @@ class FileForm extends React.Component {
   }
 
   render() {
-    let { isOpen } = this.props;
+    let { isOpen, closeForm, style } = this.props;
 
     return (
-      <Modal isOpen={isOpen} contentLabel="Appointment Form">
-        <div>
-          <label>Title: <input type='text' onChange={this.update('name')} /></label>
-          <label>File: <input type='file' onChange={this.onFileUpload} /></label>
+      <Modal isOpen={isOpen} contentLabel="Appointment Form" style={style}>
+        <div className="form-container">
+          <button onClick={closeForm} style={{float:'right'}}>Close</button>
+          <h1>Upload a File</h1>
+          <label>
+            Filename: <input type='text' onChange={this.update('name')} />
+          </label>
+          <br/>
+          <label>
+            Upload File: <input type='file' onChange={this.onFileUpload} />
+          </label>
+          <br/>
           <button onClick={this.handleSubmit}>Submit</button>
         </div>
       </Modal>

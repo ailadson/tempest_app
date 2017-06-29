@@ -9,6 +9,24 @@ import AppointmentForm from './appointment_form';
 import FileForm from './file_form';
 
 import '../../style/patient_view.scss';
+import '../../style/assessment_form.scss';
+
+const modalStyle = {
+  content : {
+    position                   : 'relative',
+    top                        : '50%',
+    border                     : '1px solid #ccc',
+    background                 : '#fff',
+    overflow                   : 'auto',
+    WebkitOverflowScrolling    : 'touch',
+    borderRadius               : '4px',
+    outline                    : 'none',
+    padding                    : '20px',
+    margin                     : 'auto',
+    width                      : '540px',
+    transform                  : 'translateY(-50%)'
+  }
+}
 
 class PatientView extends React.Component {
   constructor(props) {
@@ -20,6 +38,8 @@ class PatientView extends React.Component {
 
     this.openAppointmentForm = this.openAppointmentForm.bind(this);
     this.openFileForm = this.openFileForm.bind(this);
+    this.closeAppointmentForm = this.closeAppointmentForm.bind(this);
+    this.closeFileForm = this.closeFileForm.bind(this);
     this.handleAppointmentSubmit = this.handleAppointmentSubmit.bind(this);
     this.handleFileSubmit = this.handleFileSubmit.bind(this);
   }
@@ -39,15 +59,19 @@ class PatientView extends React.Component {
   }
 
   handleAppointmentSubmit (data) {
-    this.props.createAppointment(data, () => {
-      this.setState({ appointmentFormOpen : false });
-    });
+    this.props.createAppointment(data, this,closeAppointmentForm);
+  }
+
+  closeAppointmentForm () {
+    this.setState({ appointmentFormOpen : false });
   }
 
   handleFileSubmit (data) {
-    this.props.createFile(data, () => {
-      this.setState({ fileFormOpen : false });
-    });
+    this.props.createFile(data, this.closeFileForm);
+  }
+
+  closeFileForm () {
+    this.setState({ fileFormOpen : false });
   }
 
   renderPatients() {
@@ -106,7 +130,7 @@ class PatientView extends React.Component {
                   doctors={doctors}
                   title="Appointments"
                   onUpdate={updateAppointment}
-                  onDelete={deleteAppointment}/>
+                  onDelete={deleteAppointment} />
         <DropDown component={FilePanel}
                   data={patient.files}
                   title="Files"
@@ -114,10 +138,14 @@ class PatientView extends React.Component {
         <AppointmentForm isOpen={appointmentFormOpen}
                          currentUser={currentUser}
                          onSubmit={this.handleAppointmentSubmit}
-                         doctors={doctors}/>
+                         doctors={doctors}
+                         closeForm={this.closeAppointmentForm}
+                         style={modalStyle}/>
         <FileForm isOpen={fileFormOpen}
                   currentUser={currentUser}
-                  onSubmit={this.handleFileSubmit}/>
+                  onSubmit={this.handleFileSubmit}
+                  closeForm={this.closeFileForm}
+                  style={modalStyle}/>
       </div>
     );
   }

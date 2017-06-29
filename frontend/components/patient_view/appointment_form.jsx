@@ -94,16 +94,27 @@ class AppointmentPanel extends React.Component {
   }
 
   render() {
-    let { isOpen } = this.props;
+    let { isOpen, closeForm, style } = this.props;
 
     return (
-      <Modal isOpen={isOpen} contentLabel="Appointment Form">
-        <div>
-          <label>Date: <input type='date' onChange={this.update('date')} /></label>
-          <label>Time: <input type='time' onChange={this.update('time')} /></label>
-          {this.renderDoctorSelect()}
+      <Modal isOpen={isOpen} contentLabel="Appointment Form" style={style}>
+        <button onClick={closeForm} style={{float:'right'}}>Close</button>
+        <div className="form-container">
+          <h1>Schedule an Appointment</h1>
           <label>
-            What wrong?: <textarea onChange={this.update('purpose')}></textarea>
+            Date: <input type='date' onChange={this.update('date')} />
+          </label>
+          <br/>
+          <label>
+            Time: <input type='time' onChange={this.update('time')} />
+          </label>
+          <br/>
+          {this.renderDoctorSelect()}
+          <br/>
+          <label>
+            Tell us what wrong?
+            <br/>
+            <textarea onChange={this.update('purpose')}></textarea>
           </label>
           <button onClick={this.handleSubmit}>Submit</button>
         </div>

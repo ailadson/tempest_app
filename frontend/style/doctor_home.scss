@@ -1,5 +1,14 @@
 @import 'media_query';
 
+.appointment-notice {
+  padding: 1px 6px;
+  background-color: rgb(254, 47, 47);
+  border-radius: 8px;
+  margin-left: 5px;
+  font-size: .8em;
+  font-weight: bolder;
+}
+
 .doctor-home-container {
   position: relative;
   height: 95%;

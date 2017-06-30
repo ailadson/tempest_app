@@ -13,8 +13,8 @@ class LoadingScreen extends React.Component {
     return (
       <div className={`loading-screen ${hidden}`}>
         <div className="spinner">
-        <div className="double-bounce1"></div>
-        <div className="double-bounce2"></div>
+          <div className="double-bounce1"></div>
+          <div className="double-bounce2"></div>
         </div>
       </div>
     );

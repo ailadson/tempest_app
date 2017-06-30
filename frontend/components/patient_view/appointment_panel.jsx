@@ -109,11 +109,24 @@ class AppointmentForm extends React.Component {
     }
   }
 
+  renderExclamation () {
+    let { currentUser, data } = this.props;
+
+    if (currentUser.id === data.doctorId &&
+        new Date() <= new Date(data.date + " " + data.time) &&
+        !data.declineReason){
+      return(<span className="appointment-notice">!</span>)
+    } else {
+      return("")
+    }
+  }
+
   render() {
     let { data, doctors } = this.props;
 
     return (
       <div className="appointment-panel">
+        {this.renderExclamation()}
         <div>Scheduled: {`${new Date(data.date).toDateString()} @ ${data.time}`}</div>
         <div>Reason: {data.purpose}</div>
         {this.renderDoctor()}

@@ -48,8 +48,26 @@ class DoctorHome extends React.Component {
     this.setState({ asideExpanded : false });
   }
 
+  renderExclamation (patient, id, currentTime) {
+    let appointment = patient.appointments.find(a => {
+      console.log(a);
+      return (
+        a.doctorId === id &&
+        currentTime <= new Date(a.date + " " + a.time) &&
+        !a.declineReason
+      );
+    });
+
+    if (appointment) {
+      return (<span className="appointment-notice">!</span>);
+    } else {
+      return (<span></span>);
+    }
+  }
   renderPatients() {
       let searchFilter = this.state.searchFilter.toLowerCase();
+      let id = this.props.currentUser.id;
+      let currentDate = new Date();
 
       let filteredPatients = this.props.patients.filter(patient => {
         if (searchFilter === '') {
@@ -65,6 +83,7 @@ class DoctorHome extends React.Component {
             <Link to={`${this.props.match.url}/${patient.id}`}
                   onClick={this.closeAside}>
               {`${patient.firstName} ${patient.lastName}`}
+              {this.renderExclamation(patient, id, currentDate)}
               </Link>
           </li>
         );

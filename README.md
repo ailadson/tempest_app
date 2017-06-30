@@ -2,7 +2,6 @@
 
 * only upload PDFs
 * only delete your files
-* add loading screen
 
 # Tempus App Walkthrough
 

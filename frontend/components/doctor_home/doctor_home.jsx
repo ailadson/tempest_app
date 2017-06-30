@@ -50,7 +50,7 @@ class DoctorHome extends React.Component {
 
   renderExclamation (patient, id, currentTime) {
     let appointment = patient.appointments.find(a => {
-      console.log(a);
+
       return (
         a.doctorId === id &&
         currentTime <= new Date(a.date + " " + a.time) &&

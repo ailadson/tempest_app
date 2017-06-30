@@ -60,6 +60,7 @@ class PatientView extends React.Component {
   }
 
   handleAppointmentSubmit (data) {
+    console.log(data);
     this.props.createAppointment(data, this.closeAppointmentForm);
   }
 

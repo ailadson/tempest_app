@@ -1,17 +1,8 @@
 @import 'media_query';
 
-.appointment-notice {
-  padding: 1px 6px;
-  background-color: rgb(254, 47, 47);
-  border-radius: 8px;
-  margin-left: 5px;
-  font-size: .8em;
-  font-weight: bolder;
-}
-
 .doctor-home-container {
   position: relative;
-  height: 95%;
+  height: 93%;
 }
 
 .group:after{
@@ -39,6 +30,7 @@
 
 .doctor-home-container aside h3 {
   margin: 10px;
+  font-weight: 600;
 }
 
 .doctor-home-container section {
@@ -127,4 +119,5 @@ aside .drop-down-link:hover {
 
 .aside-welcome {
   font-size: 1em;
+  font-weight: 600;
 }

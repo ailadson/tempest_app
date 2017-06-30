@@ -30,10 +30,18 @@ class AppointmentForm extends React.Component {
         declineReason : ''
       }
 
+      this.acceptAppointment = this.acceptAppointment.bind(this);
       this.declineAppointment = this.declineAppointment.bind(this);
       this.cancelAppointment = this.cancelAppointment.bind(this);
       this.closeAppointmentForm = this.closeAppointmentForm.bind(this);
       this.handleDeclineConfirm = this.handleDeclineConfirm.bind(this);
+  }
+
+  acceptAppointment() {
+    let { id } = this.props.data;
+    let patientId = this.props.match.url.split("/")[3];
+    let appointment = { id, accepted : true };
+    this.props.onUpdate({ appointment, patientId }, this.closeAppointmentForm);
   }
 
   declineAppointment() {
@@ -45,17 +53,14 @@ class AppointmentForm extends React.Component {
   }
 
   handleDeclineConfirm() {
-    let { date, purpose } = this.props.data;
-    let studentID = this.props.match.url.split("/")[3];
-
-    let data = {
+    let { id } = this.props.data;
+    let patientId = this.props.match.url.split("/")[3];
+    let appointment = {
+      id,
       declineReason : this.state.declineReason,
-      date,
-      purpose,
-      studentID
     };
 
-    this.props.onUpdate(data, this.closeAppointmentForm);
+    this.props.onUpdate({ appointment, patientId }, this.closeAppointmentForm);
   }
 
   cancelAppointment() {
@@ -72,16 +77,30 @@ class AppointmentForm extends React.Component {
     });
   }
 
-  renderDeclineReason () {
+  renderReason () {
     let { data } = this.props;
 
-    if (data.declineReason)
-      return (<div>Declined because: {data.declineReason}</div>)
-    else
-      return false
+    if (data.declineReason) {
+      return (
+        <div>
+          <span className="panel-label">
+            Declined because:
+          </span> {data.declineReason}
+        </div>
+      );
+    } else if(data.accepted) {
+      return (
+        <div>
+          <span className="panel-label">
+            Accepted!
+          </span>
+        </div>
+      );
+    }
+    return false;
   }
 
-  renderCancelButton () {
+  renderButtons () {
     let { date, time, doctorId } = this.props.data;
     let { currentUser } = this.props;
     let type = this.props.match.url.split("/")[1];
@@ -90,7 +109,13 @@ class AppointmentForm extends React.Component {
 
     if (selectedDate > now) {
       if (type === 'doctor' && currentUser.id == doctorId) {
-        return (<button onClick={this.declineAppointment}>Decline</button>);
+        return (
+          <div className="group" style={{ marginTop : '0.5em'}}>
+            <button onClick={this.acceptAppointment}>Accept</button>
+            <button style={{ marginLeft : '6em'}}
+                    onClick={this.declineAppointment}>Decline</button>
+          </div>
+        );
       } else if (type === 'patient') {
         return (<button onClick={this.cancelAppointment}>Cancel</button>);
       }
@@ -103,22 +128,70 @@ class AppointmentForm extends React.Component {
     let { data, doctors } = this.props;
     let doctor = doctors.find(d => (d.id == data.doctorId))
     if (doctor){
-      return (<div>Dr. {`${doctor.firstName} ${doctor.lastName}`}</div>);
+      return (
+        <div>
+          <span className="panel-label">
+            With:
+          </span> Dr. {`${doctor.firstName} ${doctor.lastName}`}
+        </div>);
     } else {
       return (<div></div>);
     }
   }
 
+  renderDoctorExclamation (data) {
+    if (data.accepted) {
+      return(
+        <span style={{ fontSize : '0.6em' }}>
+          <span className="appointment-notice-green">!</span> Upcoming!
+        </span>
+      );
+    } else if (!data.declineReason) {
+      return(
+        <span style={{ fontSize : '0.6em' }}>
+          <span className="appointment-notice-yellow">!</span>
+        </span>
+      );
+    }
+
+    return("");
+  }
+
+  renderPatientExclamation (data) {
+    if (data.accepted) {
+      return(
+        <span style={{ fontSize : '0.6em' }}>
+          <span className="appointment-notice-green">!</span> Upcoming!
+        </span>
+      );
+    } else if (!data.declineReason) {
+      return(
+        <span style={{ fontSize : '0.6em' }}>
+          <span className="appointment-notice-yellow">!</span> Pending.
+        </span>
+      );
+    } else {
+      return(
+        <span style={{ fontSize : '0.6em' }}>
+          <span className="appointment-notice-red">!</span> Declined.
+        </span>
+      );
+    }
+
+    return("");
+  }
+
   renderExclamation () {
     let { currentUser, data } = this.props;
+    let upcoming = new Date() <= new Date(data.date + " " + data.time);
 
-    if (currentUser.id === data.doctorId &&
-        new Date() <= new Date(data.date + " " + data.time) &&
-        !data.declineReason){
-      return(<span className="appointment-notice">!</span>)
-    } else {
-      return("")
+    if (currentUser.id === data.doctorId && upcoming){
+      return this.renderDoctorExclamation(data);
+    } else if(currentUser.id === data.patientId && upcoming) {
+      return this.renderPatientExclamation(data);
     }
+
+    return("");
   }
 
   render() {
@@ -127,11 +200,19 @@ class AppointmentForm extends React.Component {
     return (
       <div className="appointment-panel">
         {this.renderExclamation()}
-        <div>Scheduled: {`${new Date(data.date).toDateString()} @ ${data.time}`}</div>
-        <div>Reason: {data.purpose}</div>
+        <div>
+          <span className="panel-label">
+            Scheduled:
+          </span> {`${new Date(data.date).toDateString()} @ ${data.time}`}
+        </div>
         {this.renderDoctor()}
         <div>
-          {this.renderDeclineReason() || this.renderCancelButton()}
+          <span className="panel-label">
+            Reason:
+          </span> {data.purpose}
+        </div>
+        <div>
+          {this.renderReason() || this.renderButtons()}
         </div>
         <Modal style={modalStyle} isOpen={this.state.declineModalOpen} contentLabel="Decline Confirm">
           <div className="form-container">

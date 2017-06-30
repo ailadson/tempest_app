@@ -86,18 +86,15 @@ PatientController.destroyAppointment = function (req, res) {
 };
 
 PatientController.declineAppointment = function (req, res) {
-  var appointment = req.body;
+  var { appointment } = req.body;
+
   models.Appointment.findOne({
     where : {
-      patientId : appointment.studentID,
-      purpose : appointment.purpose,
-      date : appointment.date
+      id : appointment.id
     }
-  }).then(appointment => {
-    appointment.update({
-      declineReason : req.body.declineReason
-    }).then(() => {
-      getPatientFromId(req.body.studentID, patient => {
+  }).then(result => {
+    result.update(appointment).then(() => {
+      getPatientFromId(req.body.patientId, patient => {
         res.json(patient.dataValues);
       });
     });

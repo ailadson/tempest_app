@@ -14,6 +14,9 @@ class DropDown extends React.Component {
     let { component: Component, data, onDelete, onUpdate, doctors, currentUser } = this.props;
 
     return data.sort((a, b) => {
+      if ((!a.declineReason || !b.declineReason) && a.declineReason !== b.declineReason) {
+        return (a.declineReason ? 1 : -1);
+      }
       return (
         new Date(a.date + ' ' + a.time) < new Date(b.date + ' ' + b.time) ? -1 : 1
       );
@@ -40,6 +43,9 @@ class DropDown extends React.Component {
     return (
       <div className="drop-down-container">
         <header>{title}</header>
+        <footer onClick={this.expandPanel}>
+          {expanded ? 'Minimize' : ''}
+        </footer>
         <section ref="panel">
           <ul>{this.renderData()}</ul>
         </section>

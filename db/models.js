@@ -68,6 +68,10 @@ const Appointment = db.define('appointment', {
   },
   declineReason: {
     type: DataTypes.STRING
+  },
+  accepted: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
   }
 });
 

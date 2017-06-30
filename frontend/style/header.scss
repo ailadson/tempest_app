@@ -2,12 +2,12 @@
 
 .site-header {
   background-color: rgba(0,0,0,0.5);
-  padding: 10px;
   font-size: 3.5em;
   position: relative;
   height: 5%;
   min-height: 1.25em;
   color: white;
+  box-sizing: border-box;
 
   @media screen and (max-width : $break-medium) {
     font-size: 1.35em;

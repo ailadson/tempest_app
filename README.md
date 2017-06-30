@@ -1,7 +1,3 @@
-##TODO
-
-* only upload PDFs
-
 # Tempus App Walkthrough
 
 I'll do an overview of all the files and directories, explaining how they fit into the big picture.

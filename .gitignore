@@ -4,3 +4,6 @@ bundle.js.map
 secrets.json
 .DS_Store
 db.sqlite
+reports
+*.log
+screenshots

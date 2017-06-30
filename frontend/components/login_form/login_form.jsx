@@ -43,9 +43,17 @@ class SessionForm extends React.Component {
 
   renderAltLoginLink() {
     if (this.props.path === '/') {
-      return <Link to="/doctor">Are you a doctor? Login here.</Link>;
+      return(
+        <Link to="/doctor">
+          <span className="alt-login-link">Are you a doctor? Login here.</span>
+        </Link>
+      );
     } else {
-      return <Link to="/">Are you a patient? Login here.</Link>;
+      return(
+        <Link to="/">
+          <span className="alt-login-link">Are you a patient? Login here.</span>
+        </Link>
+      );
     }
   }
 

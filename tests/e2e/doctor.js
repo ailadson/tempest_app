@@ -1,6 +1,19 @@
 var doctor = { emailAddress : 'doc1@test.com', password : 'p1' };
-var patient = { emailAddress : 'pat1@test.com', password : 'p1' };
-var faker = { emailAddress : 'fake@test.com', password : 'blah' };
+var patients = [
+  {
+    name : 'Anthony Ladson',
+    emailAddress : 'pat1@test.com',
+    password : 'p1'
+  },{
+    name : 'Marsha Thompson',
+    emailAddress : 'pat2@test.com',
+    password : 'p2'
+  },{
+    name : 'Supta Jinswi',
+    emailAddress : 'pat3@test.com',
+    password : 'p3'
+  }
+];
 
 module.exports = {
   'Patient Login' : function (browser) {

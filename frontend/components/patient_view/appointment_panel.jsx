@@ -2,6 +2,26 @@ import React from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
 
+import '../../style/assessment_form.scss';
+
+const modalStyle = {
+  content : {
+    position                   : 'relative',
+    top                        : '50%',
+    border                     : '1px solid #ccc',
+    background                 : '#fff',
+    overflow                   : 'auto',
+    WebkitOverflowScrolling    : 'touch',
+    borderRadius               : '4px',
+    outline                    : 'none',
+    padding                    : '20px',
+    margin                     : 'auto',
+    width                      : '50%',
+    minWidth                   : '400px',
+    transform                  : 'translateY(-50%)'
+  }
+}
+
 class AppointmentForm extends React.Component {
   constructor(props){
       super(props);
@@ -12,11 +32,16 @@ class AppointmentForm extends React.Component {
 
       this.declineAppointment = this.declineAppointment.bind(this);
       this.cancelAppointment = this.cancelAppointment.bind(this);
+      this.closeAppointmentForm = this.closeAppointmentForm.bind(this);
       this.handleDeclineConfirm = this.handleDeclineConfirm.bind(this);
   }
 
   declineAppointment() {
     this.setState({ declineModalOpen : true });
+  }
+
+  closeAppointmentForm() {
+    this.setState({ declineModalOpen : false });
   }
 
   handleDeclineConfirm() {
@@ -30,9 +55,7 @@ class AppointmentForm extends React.Component {
       studentID
     };
 
-    this.props.onUpdate(data, () => {
-      this.setState({ declineModalOpen : false });
-    });
+    this.props.onUpdate(data, this.closeAppointmentForm);
   }
 
   cancelAppointment() {
@@ -97,11 +120,14 @@ class AppointmentForm extends React.Component {
         <div>
           {this.renderDeclineReason() || this.renderCancelButton()}
         </div>
-        <Modal isOpen={this.state.declineModalOpen} contentLabel="Decline Confirm">
-          <label>Tell the paitient why you're canceling:
+        <Modal style={modalStyle} isOpen={this.state.declineModalOpen} contentLabel="Decline Confirm">
+          <div className="form-container">
+            <button onClick={this.closeAppointmentForm}>Close</button>
+            <h4>Tell the paitient why you're canceling</h4>
             <textarea onChange={this.update('declineReason')}></textarea>
-          </label>
-          <button onClick={this.handleDeclineConfirm}>Confirm</button>
+            <br/>
+            <button onClick={this.handleDeclineConfirm}>Confirm</button>
+          </div>
         </Modal>
       </div>
     );

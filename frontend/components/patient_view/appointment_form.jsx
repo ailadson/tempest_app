@@ -65,7 +65,7 @@ class AppointmentPanel extends React.Component {
 
     return doctors.map((d, i) => {
       return(
-        <option key={i} value={d.id}>{d.name}</option>
+        <option key={i} value={d.id}>{`${d.firstName} ${d.lastName}`}</option>
       )
     });
   }
@@ -77,7 +77,7 @@ class AppointmentPanel extends React.Component {
     if (type === 'doctor') {
       return (
         <label>
-          Doctor: <input type='text' readOnly value={`${currentUser.name} (you)`} />
+          Doctor: <input type='text' readOnly value={`${currentUser.firstName} ${currentUser.lastName} (you)`} />
         </label>
       )
     } else {

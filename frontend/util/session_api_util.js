@@ -1,4 +1,4 @@
-export const login = (user, type, success, error) => (
+export const login = (user, type, success, error) => {
   $.ajax({
     method: 'POST',
     url: `/api/login?type=${type}`,
@@ -7,7 +7,7 @@ export const login = (user, type, success, error) => (
     success,
     error
   })
-);
+};
 
 export const fetchCurrentUser = (success, error) => (
   $.ajax({

@@ -3,3 +3,4 @@ bundle.js
 bundle.js.map
 secrets.json
 .DS_Store
+db.sqlite

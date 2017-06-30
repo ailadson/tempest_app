@@ -1,67 +1,106 @@
-var db = require('../db/util');
 var storage = require('../cloud_storage');
+var models = require('../db/models');
 
 var PatientController = {};
 
+function getPatientFromId(id, cb) {
+  models.Patient.findOne({
+    where : {
+      id : id
+    },
+    include: [{
+      model : models.Appointment, as : "appointments"
+    }, {
+      model : models.File, as : "files"
+    }]
+  }).then(cb);
+}
+
 PatientController.all = function(req, res) {
-  var patients = db.Patients.all();
-  res.end(JSON.stringify(patients));
+  models.Patient.findAll({
+    include : [{
+      model : models.Appointment, as : "appointments"
+    }, {
+      model : models.File, as : "files"
+    }]
+  }).then(patients => {
+    patients = patients.map(p => p.dataValues)
+    res.json(patients);
+  });
 };
 
 PatientController.createFile = function(req, res) {
-  var patients = db.Patients.all();
-  patient = patients.find(patient => (patient.id === parseInt(req.body.studentID)));
-  storage.upload(req.body.file.filedata, function(result) {
-    patient.files.push({ url : result.url, name : req.body.file.name, date: new Date() });
-    db.Patients.save(patients, function(){
-      res.end(JSON.stringify(patient));
+  getPatientFromId(req.body.studentID, patient => {
+    storage.upload(req.body.file.filedata, function(result) {
+      patient.createFile({
+        url : result.url,
+        name : req.body.file.name,
+        date : new Date().toDateString()
+      }).then(() => {
+        getPatientFromId(req.body.studentID, patient => {
+          res.json(patient.dataValues);
+        });
+      });
     });
   });
 };
 
 PatientController.destroyFile = function(req, res) {
-  var patients = db.Patients.all();
-  patient = patients.find(patient => (patient.id === parseInt(req.body.studentID)));
-  var fileIdx = patient.files.findIndex(f => (f.url === req.body.file.url));
-  delete patient.files[fileIdx];
-  patient.files = patient.files.filter(f => f);
-  db.Patients.save(patients, function(){
-    res.end(JSON.stringify(patient));
+  models.File.findOne({
+    patientId : req.body.studentID,
+    url : req.body.file.url
+  }).then(file => {
+    file.destroy().then(() => {
+      getPatientFromId(req.body.studentID, patient => {
+        res.json(patient.dataValues);
+      });
+    });
   });
 };
 
 PatientController.createAppointment = function(req, res) {
-  var patients = db.Patients.all();
-  patient = patients.find(patient => (patient.id === parseInt(req.body.studentID)));
-  patient.appointments.push(req.body.appointment);
-  db.Patients.save(patients, function(){
-    res.end(JSON.stringify(patient));
+  getPatientFromId(req.body.studentID, patient => {
+    patient.createAppointment(req.body.appointment).then(() => {
+      getPatientFromId(req.body.studentID, patient => {
+        res.json(patient.dataValues);
+      });
+    });
   });
 }
 
 PatientController.destroyAppointment = function (req, res) {
   var appointment = req.body.appointment;
-  var patients = db.Patients.all();
-  patient = patients.find(patient => (patient.id === parseInt(req.body.studentID)));
-  var appointmentIdx = patient.appointments.findIndex(a => (
-    a.purpose === appointment.purpose && a.date === appointment.date
-  ));
-  delete patient.appointments[appointmentIdx];
-  patient.appointments = patient.appointments.filter(a => a);
-  db.Patients.save(patients, function(){
-    res.end(JSON.stringify(patient));
+  models.Appointment.findOne({
+    where : {
+      patientId : req.body.studentID,
+      purpose : appointment.purpose,
+      date : appointment.date
+    }
+  }).then(appointment => {
+    appointment.destroy().then(() => {
+      getPatientFromId(req.body.studentID, patient => {
+        res.json(patient.dataValues);
+      });
+    });
   });
 };
 
 PatientController.declineAppointment = function (req, res) {
-  var patients = db.Patients.all();
-  patient = patients.find(patient => (patient.id === parseInt(req.body.studentID)));
-  appointment = patient.appointments.find(appointment => (
-    appointment.purpose === req.body.purpose && appointment.date === req.body.date
-  ));
-  appointment.declineReason = req.body.declineReason;
-  db.Patients.save(patients, function(){
-    res.end(JSON.stringify(patient));
+  var appointment = req.body;
+  models.Appointment.findOne({
+    where : {
+      patientId : appointment.studentID,
+      purpose : appointment.purpose,
+      date : appointment.date
+    }
+  }).then(appointment => {
+    appointment.update({
+      declineReason : req.body.declineReason
+    }).then(() => {
+      getPatientFromId(req.body.studentID, patient => {
+        res.json(patient.dataValues);
+      });
+    });
   });
 };
 

@@ -38,8 +38,7 @@ export const updateAppointment = (data, dispatch, cb) => {
     dispatch(updatePatient(patient))
     if (cb) cb(patient);
   }, err => {
-    console.log("ERROR");
-    console.log(err);
+    // console.log(err);
   });
 };
 

@@ -64,7 +64,7 @@ class DoctorHome extends React.Component {
           <li key={i}>
             <Link to={`${this.props.match.url}/${patient.id}`}
                   onClick={this.closeAside}>
-              {patient.name}
+              {`${patient.firstName} ${patient.lastName}`}
               </Link>
           </li>
         );
@@ -72,6 +72,7 @@ class DoctorHome extends React.Component {
   }
 
   render() {
+    let { currentUser } = this.props;
     let asideClassName = (this.state.asideExpanded ? "" : "aside-minimized");
     let asideExpandText = (this.state.asideExpanded ? "Hide Patients" : "Show Patients");
 
@@ -79,6 +80,9 @@ class DoctorHome extends React.Component {
       <div className="doctor-home-container group">
         <aside ref={this.controlScroll}>
           <div className={"aside-patients " + asideClassName}>
+            <h2 className="aside-welcome">
+              Welcome, Dr. {currentUser.lastName}
+              </h2>
             <input type="text"
               className="doctor-search-bar"
               placeholder="Search By Name"

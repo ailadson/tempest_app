@@ -60,7 +60,7 @@ class PatientView extends React.Component {
   }
 
   handleAppointmentSubmit (data) {
-    this.props.createAppointment(data, this,closeAppointmentForm);
+    this.props.createAppointment(data, this.closeAppointmentForm);
   }
 
   closeAppointmentForm () {
@@ -108,12 +108,12 @@ class PatientView extends React.Component {
     } = this.props;
 
     let patient = this.props.patients.find(p => {
-      return (p.id === parseInt(match.params.patientId));
+      return (p.id === match.params.patientId);
     })
 
     return (
       <div className="patient-view-container">
-        <h1>{patient.name}</h1>
+        <h1>{`${patient.firstName} ${patient.lastName}`}</h1>
         <div className="patient-view-info">
           <h3>Date of Birth: {patient.dob}</h3>
           <h3>Email Address: {patient.emailAddress}</h3>

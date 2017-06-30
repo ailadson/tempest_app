@@ -1,11 +1,12 @@
-var db = require('../db/util');
+var models = require('../db/models');
 
 var DoctorController = {};
 
 DoctorController.all = function(req, res) {
-  var doctors = db.Doctors.all();
-  doctors = doctors.map(d => ({ name : d.name, id : d.id }));
-  res.end(JSON.stringify(doctors));
+  models.Doctor.findAll().then(doctors => {
+    doctors = doctors.map(d => d.dataValues);
+    res.json(doctors);
+  });
 };
 
 module.exports = DoctorController;

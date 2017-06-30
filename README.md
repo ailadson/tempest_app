@@ -1,7 +1,6 @@
 ##TODO
 
 * only upload PDFs
-* only delete your files
 
 # Tempus App Walkthrough
 

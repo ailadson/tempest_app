@@ -103,7 +103,7 @@ class AppointmentForm extends React.Component {
     let { data, doctors } = this.props;
     let doctor = doctors.find(d => (d.id == data.doctorId))
     if (doctor){
-      return (<div>Doctor: {doctor.name}</div>);
+      return (<div>Dr. {`${doctor.firstName} ${doctor.lastName}`}</div>);
     } else {
       return (<div></div>);
     }

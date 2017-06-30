@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/patient_api_util'
+import { toggleLoading } from './loading_actions';
 
 export const RECEIVE_ALL_PATIENTS = 'RECEIVE_ALL_PATIENTS';
 export const UPDATE_PATIENT = 'UPDATE_PATIENT';
@@ -15,21 +16,22 @@ export const updatePatient = patient => ({
 
 export const fetchPatients = (dispatch, cb) => {
   APIUtil.fetchPatients(patients => {
-    dispatch(receiveAllPatients(patients))
-    if (cb) cb(patients);
+    dispatch(receiveAllPatients(patients));
+      if (cb) cb(patients);
   }, err => {
-    console.log("ERROR");
-    console.log(err);
+      console.log("Error", err);
   });
 };
 
 export const createAppointment = (data, dispatch, cb) => {
+  dispatch(toggleLoading());
   APIUtil.createAppointment(data, patient => {
     dispatch(updatePatient(patient))
+    dispatch(toggleLoading());
     if (cb) cb(patient);
   }, err => {
-    console.log("ERROR");
-    console.log(err);
+    dispatch(toggleLoading());
+    console.log("Error", err);
   });
 };
 
@@ -53,12 +55,15 @@ export const deleteAppointment = (data, dispatch, cb) => {
 };
 
 export const createFile = (data, dispatch, cb) => {
+  console.log(toggleLoading());
+  dispatch(toggleLoading());
   APIUtil.createFile(data, patient => {
-    dispatch(updatePatient(patient))
+    dispatch(updatePatient(patient));
+    dispatch(toggleLoading());
     if (cb) cb(patient);
   }, err => {
-    console.log("ERROR");
-    console.log(err);
+    toggleLoading();
+    console.log("Error", err);
   });
 };
 

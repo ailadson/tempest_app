@@ -88,4 +88,7 @@ doc2@test.com |   p2     |  Doctor
   * Doctors are alerted to which patients they have pending appointments with.
   * Loading screen. (File uploads because it can take a while).
   * Background video becomes an image on smaller screens.
-  * !! **I've put a secrets.json file up on Github. I'm not that naive; I'll be changing those secrets within the week. Only doing it so you can smoothly check my work** !!
+  
+ ### Caveats
+  * I've put a secrets.json file up on Github. I'm not that naive; I'll be changing those secrets within the week. Only doing it so you can smoothly check my work
+  * I don't have a password length requirement, and I don't salt-n-hash the passwords on the backend. If I were developing a real application, I'd of course have done this. But then it would slow down manual testing. If I had wanted to implement a more robust authentication system, I'd have used `passport` or `bcrypt`.

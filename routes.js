@@ -22,7 +22,7 @@ module.exports = function (app){
 
     app.route('/api/patients/appointment')
     .post((req, res) => PatientController.createAppointment(req, res))
-    .patch((req, res) => PatientController.declineAppointment(req, res))
+    .patch((req, res) => PatientController.updateAppointment(req, res))
     .delete((req, res) => PatientController.destroyAppointment(req, res));
 
     app.route('/api/doctors')

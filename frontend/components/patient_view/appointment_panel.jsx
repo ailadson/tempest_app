@@ -149,7 +149,13 @@ class AppointmentForm extends React.Component {
     } else if (!data.declineReason) {
       return(
         <span style={{ fontSize : '0.6em' }}>
-          <span className="appointment-notice-yellow">!</span>
+          <span className="appointment-notice-yellow">!</span> Accept or Decline
+        </span>
+      );
+    } else {
+      return(
+        <span style={{ fontSize : '0.6em' }}>
+          Declined
         </span>
       );
     }
@@ -167,13 +173,13 @@ class AppointmentForm extends React.Component {
     } else if (!data.declineReason) {
       return(
         <span style={{ fontSize : '0.6em' }}>
-          <span className="appointment-notice-yellow">!</span> Pending.
+          <span className="appointment-notice-yellow">!</span> Pending
         </span>
       );
     } else {
       return(
         <span style={{ fontSize : '0.6em' }}>
-          <span className="appointment-notice-red">!</span> Declined.
+          <span className="appointment-notice-red">!</span> Declined
         </span>
       );
     }
@@ -196,14 +202,14 @@ class AppointmentForm extends React.Component {
 
   render() {
     let { data, doctors } = this.props;
-
+    console.log(new Date(data.date + " " + data.time));
     return (
       <div className="appointment-panel">
         {this.renderExclamation()}
         <div>
           <span className="panel-label">
             Scheduled:
-          </span> {`${new Date(data.date).toDateString()} @ ${data.time}`}
+          </span> {`${new Date(data.date + " " + data.time).toDateString()} @ ${data.time}`}
         </div>
         {this.renderDoctor()}
         <div>

@@ -85,7 +85,7 @@ PatientController.destroyAppointment = function (req, res) {
   });
 };
 
-PatientController.declineAppointment = function (req, res) {
+PatientController.updateAppointment = function (req, res) {
   var { appointment } = req.body;
 
   models.Appointment.findOne({

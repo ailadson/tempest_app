@@ -21,9 +21,11 @@ class AppointmentPanel extends React.Component {
   }
 
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return e => {
+      this.setState({
+        [field]: e.currentTarget.value
+      });
+    };
   }
 
   validate(data) {
@@ -55,6 +57,7 @@ class AppointmentPanel extends React.Component {
       studentID,
       appointment : this.state
     };
+    console.log(data);
     if (this.validate(data)){
       onSubmit(data, ()=>{console.log('created appointment!');});
     }
@@ -77,14 +80,17 @@ class AppointmentPanel extends React.Component {
     if (type === 'doctor') {
       return (
         <label>
-          Doctor: <input type='text' readOnly value={`${currentUser.firstName} ${currentUser.lastName} (you)`} />
+          Doctor: <input type='text'
+                         readOnly
+                         value={`${currentUser.firstName} ${currentUser.lastName} (you)`}
+                         id="appointment-form-doc"/>
         </label>
       )
     } else {
       return (
         <label>
           Doctor:
-          <select onChange={this.update('doctorId')}>
+          <select onChange={this.update('doctorId')} id="appointment-form-doc">
             <option value=""></option>
             {this.renderDoctorOptions()}
           </select>
@@ -102,11 +108,15 @@ class AppointmentPanel extends React.Component {
         <div className="form-container">
           <h2>Schedule an Appointment</h2>
           <label>
-            Date: <input type='date' onChange={this.update('date')} />
+            Date: <input type='date'
+                         id="appointment-form-date"
+                        onChange={this.update('date')} />
           </label>
           <br/>
           <label>
-            Time: <input type='time' onChange={this.update('time')} />
+            Time: <input type='time'
+                         id="appointment-form-time"
+                         onChange={this.update('time')} />
           </label>
           <br/>
           {this.renderDoctorSelect()}
@@ -114,9 +124,11 @@ class AppointmentPanel extends React.Component {
           <label>
             Tell us what wrong?
             <br/>
-            <textarea onChange={this.update('purpose')}></textarea>
+            <textarea onChange={this.update('purpose')}
+                      id="appointment-form-purpose"></textarea>
           </label>
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.handleSubmit}
+                  id="appointment-form-submit">Submit</button>
         </div>
       </Modal>
     );

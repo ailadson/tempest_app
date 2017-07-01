@@ -60,7 +60,6 @@ class PatientView extends React.Component {
   }
 
   handleAppointmentSubmit (data) {
-    console.log(data);
     this.props.createAppointment(data, this.closeAppointmentForm);
   }
 
@@ -118,7 +117,8 @@ class PatientView extends React.Component {
         <div className="patient-view-info">
           <h3>Date of Birth: {patient.dob}</h3>
           <h3>Email Address: {patient.emailAddress}</h3>
-          <h3>Addess: {patient.mailingAddress}</h3>
+          <h3>Phone: {patient.phone}</h3>
+          <h3>Address: {patient.mailingAddress}</h3>
         </div>
         <div className="patient-view-buttons">
           <button onClick={this.openAppointmentForm}>

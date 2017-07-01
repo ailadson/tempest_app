@@ -54,12 +54,12 @@ class DoctorHome extends React.Component {
       return (
         a.doctorId === id &&
         currentTime <= new Date(a.date + " " + a.time) &&
-        !a.declineReason
+        !a.declineReason && !a.accepted
       );
     });
 
     if (appointment) {
-      return (<span className="appointment-notice">!</span>);
+      return (<span className="appointment-notice-yellow">!</span>);
     } else {
       return (<span></span>);
     }
@@ -73,7 +73,7 @@ class DoctorHome extends React.Component {
         if (searchFilter === '') {
           return true;
         } else {
-          return patient.name.toLowerCase().indexOf(searchFilter) > -1;
+          return (`${patient.firstName} ${patient.lastName}`).toLowerCase().indexOf(searchFilter) > -1;
         }
       });
 

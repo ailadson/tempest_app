@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "node nightwatch.conf.js",
-    "e2e": "./node_modules/.bin/nightwatch --config nightwatch.conf.js"
+    "pretest": "node ./db/toggle_config.js; nohup node server.js &",
+    "test": "./node_modules/.bin/nightwatch --config nightwatch.conf.js",
+    "posttest": "node ./db/toggle_config.js; kill $(ps aux | grep 'node server.js' | grep -v grep | awk '{print $2}')"
   },
   "keywords": [],
   "author": "",

@@ -1,10 +1,10 @@
 node_modules
 bundle.js
 bundle.js.map
-#secrets.json
+# secrets.json
 .DS_Store
-db.sqlite
-test.sqlite
+*.sqlite
 reports
 *.log
 screenshots
+nohup.out

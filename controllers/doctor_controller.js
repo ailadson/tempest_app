@@ -1,4 +1,4 @@
-var models = require('../db/models');
+var models = require('../db/models')();
 
 var DoctorController = {};
 

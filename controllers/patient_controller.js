@@ -1,5 +1,5 @@
 var storage = require('../cloud_storage');
-var models = require('../db/models');
+var models = require('../db/models')();
 
 var PatientController = {};
 

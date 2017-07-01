@@ -1,7 +1,13 @@
 const DataTypes = require('sequelize').DataTypes;
+const fs = require('fs');
+const path = require('path')
+
+let { testing } = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "config.json"), 'utf8')
+);
+let db = require('./db_connection')(testing ? "test" : "db");
 
 function getModels(db_filename) {
-  const db = require('./db_connection')(db_filename || "db");
   return defineModels(db);
 }
 

@@ -1,4 +1,5 @@
-var models = require('../db/models');
+const fs = require('fs');
+const models = require('../db/models')();
 
 var SessionController = {};
 

@@ -51,13 +51,15 @@
 
 * **Style** - The site is designed to be responsive.
 
-<img src="./docs/screenshot1.png" width="300">
+<img src="./docs/screenshot1.png" width="500">
 Large Screen
-
-<img src="./docs/screenshot2.png" width="300">
+<br/>
+<br/>
+<img src="./docs/screenshot2.png" width="500">
 Medium Screen
-
-<img src="./docs/screenshot3.png" width="300">
+<br/>
+<br/>
+<img src="./docs/screenshot3.png" width="500">
 Small Screen
 
 * **Patient View Reuse**

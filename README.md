@@ -47,50 +47,15 @@
   4. `style` - As I mentioned earlier, my scss in bundled together with my js, specifically the components. I find it more manageable to include specific scss files with specific components. So, I house all of my scss in the `frontend` folder.
   5. `util` - There are two main type utility methods I used: API and Routes. API utility methods use AJAX to make API calls to the backend. Route utility methods are authentication wrappers (i.e. make a route require a login)
 
-* **Routes**
+* **Responsive Design** - The site is designed to be responsive. Below are screenshots at different sizes:
 
-* **Style** - The site is designed to be responsive.
-
-<img src="./docs/screenshot1.png" width="500">
-Large Screen
-<br/>
-<br/>
-<img src="./docs/screenshot2.png" width="500">
-Medium Screen
-<br/>
-<br/>
-<img src="./docs/screenshot3.png" width="500">
-Small Screen
-
-* **Patient View Reuse**
-
-
-
-## public/ and views/
-
-The `public` directory really only has the `bundle.js` file. The `views` directory has the root of the application. There's the `div` that React will hook on to, as well as a few scripts/links.
-
-## routes.js
-
-This file is the router. For the sake of controlling complexity, I went with the MVC pattern. The router determines which controller and action should process the request. Pretty standard. I should mention that the router only handle request made to `/api/*` paths. The html is given by line 26 in `server.js`.
-
-## controllers/
-
-This is the directory where all of the controllers live. There are three controllers.
-
-
-
-The controller rely on two modules:
-
-1. `db/util.js` - This file provides utility methods that modify the data.
-2. `cloud_storage.js` - Files are saved to Cloudinary and displayed with iframes. The modules interfaces with the cloudinary api.
-
-## frontend
-
-This is where all the client JS code lives. It eventually becomes the `bundle.js` file. I'm using `react`, `react-router`, and `redux`. I think I named my directories appropriately. All the actions are int eh `actions/` directory; same for the `store`.
-
-### main.jsx and components/root.jsx
-
-### app.jsx
-
-### Containers
+<center>
+  Large Screen
+  <img src="./docs/screenshot1.png" width="500">
+  <br/>
+  Medium Screen
+  <img src="./docs/screenshot2.png" width="500">
+  <br/>
+  Small Screen
+  <img src="./docs/screenshot3.png" width="500">
+</center>

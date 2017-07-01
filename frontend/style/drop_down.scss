@@ -19,8 +19,9 @@
   clear: both;
   text-decoration: underline;
   cursor: pointer;
-  font-size: .8em;
+  font-size: .95em;
   text-align: center;
+  margin-bottom: 5px;
 }
 
 .drop-down-container footer:hover {
@@ -30,8 +31,8 @@
 .drop-down-container section {
   float: none !important;
   max-height: 0px;
-  -webkit-transition: max-height 1s !important;
-  transition: max-height 1s !important;
+  -webkit-transition: max-height 0.5s !important;
+  transition: max-height 0.5s !important;
   width: 80% !important;
   margin: auto !important;
   background-color: #79cedc !important;
@@ -75,6 +76,11 @@
   width: 100%;
   height: 300px;
   margin: auto;
+  display: block;
+
+  @media screen and (max-width : $break-small) {
+    display: none;
+  }
 }
 
 .file-panel button {

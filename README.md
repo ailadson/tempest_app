@@ -2,8 +2,8 @@
 
 1. Run `npm install`
 2. Run `node db/reset.js` to initialize the database
-4. Run `npm run test` to run end-to-end testing with nightwatchjs.
-5. Run `node server.js` to start server. Opens on port 3000.
+4. Run `npm test` to run end-to-end testing with nightwatchjs.
+5. Run `npm start` to start server. Opens on port 3000.
   * Visit `http://localhost:3000/` to browse the site.
 
 ### or use Docker
@@ -48,7 +48,7 @@ doc2@test.com |   p2     |  Doctor
 
 * **RESTful API** - All data is created, modified, or destroyed through a RESTful API. The endpoints are defined in `routes.js`. It's pretty standard; I use the common HTTP verbs and common URL patterns for matching. Everything is name-spaced under `/api/`. I made the assumption that the API would only be used by the app, and so I've implemented a csfr protection to prevent malicious, foreign requests. If called for, I could develop an key system that allows other sites to use the API.
 
-* **The Database** - I used a Sqlite3 database, but it's very extendable because I used an ORM called Sequelize. I chose Sqlite3 for speed of development, but, because I'm using an ORM, the database could easily be updated to fit new requirements. There are three files in the `db/` directory:
+* **The Database** - I used a Sqlite3 database, but it's very extendable because I used an ORM called Sequelize. I chose Sqlite3 for speed of development, but, because I'm using an ORM, the database could easily be updated to fit new requirements. There are three files in the `db/` directory that I want to point out:
   1. `db_connection.js` - Sets up and interfaces with Sequelize.
   2. `models.js` - defines all the models used in the app.
   3. `reset.js` - resets the database. This is automatically run if you run the test cases.
@@ -88,7 +88,7 @@ doc2@test.com |   p2     |  Doctor
   * Doctors are alerted to which patients they have pending appointments with.
   * Loading screen. (File uploads because it can take a while).
   * Background video becomes an image on smaller screens.
-  
+
  ### Caveats
   * I've put a secrets.json file up on Github. I'm not that naive; I'll be changing those secrets within the week. Only doing it so you can smoothly check my work
   * I don't have a password length requirement, and I don't salt-n-hash the passwords on the backend. If I were developing a real application, I'd of course have done this. But then it would slow down manual testing. If I had wanted to implement a more robust authentication system, I'd have used `passport` or `bcrypt`.

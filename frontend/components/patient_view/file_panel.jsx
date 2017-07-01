@@ -36,6 +36,11 @@ class FilePanel extends React.Component {
           <span className="panel-label">
             Uploaded:
           </span> {`${new Date(data.date).toDateString()}`}</div>
+          <span className="panel-label">
+            <a href={data.url} target="_blank">
+              Download
+            </a>
+          </span>
         <iframe src={data.url}></iframe>
         {this.renderDeleteButton()}
       </div>

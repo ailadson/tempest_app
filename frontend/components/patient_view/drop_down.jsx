@@ -40,7 +40,23 @@ class DropDown extends React.Component {
   }
 
   renderData() {
-    let { component: Component, data, onDelete, onUpdate, doctors, currentUser } = this.props;
+    let {
+      component: Component,
+      data,
+      onDelete,
+      onUpdate,
+      doctors,
+      currentUser,
+      title
+     } = this.props;
+
+    if (!data.length) {
+      return (
+        <div style={{ textAlign : 'center', fontSize : '.8em' }}>
+          No {title}
+        </div>
+      );
+    }
 
     return data.sort(this.sortPanels).map((d, i) => {
       return(
@@ -66,13 +82,13 @@ class DropDown extends React.Component {
       <div className="drop-down-container" id={title + "-drop-down"}>
         <header>{title}</header>
         <footer onClick={this.expandPanel}>
-          {expanded ? 'Minimize' : ''}
+          {expanded ? 'Minimize' : 'Expand'}
         </footer>
         <section ref="panel">
           <ul>{this.renderData()}</ul>
         </section>
         <footer onClick={this.expandPanel}>
-          {expanded ? 'Minimize' : 'Expand'}
+          {expanded ? 'Minimize' : ''}
         </footer>
       </div>
     );

@@ -6,7 +6,15 @@
 5. Run `node server.js` to start server. Opens on port 3000.
   * Visit `http://localhost:3000/` to browse the site.
 
-Use the following user credentials to log into and peruse the site.
+### or use Docker
+
+* Download image from registry: `docker pull ailadson/tempus`
+* Run `docker run -p 3000:3000 ailadson/tempus`
+* Visit `http://localhost:3000/` to browse the site.
+
+### Credentials
+
+Be sure run `node db/reset.js`.
 
 Email Address | Password | Account Type
 --------------|----------|-------------

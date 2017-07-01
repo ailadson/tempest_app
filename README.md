@@ -1,9 +1,8 @@
 # Getting Started
 
 1. Run `npm install`
-2. Run `./node_modules/.bin/webpack` to build the bundle js file
-3. Run `node db/reset.js` to initialize the database
-4. Run `node server.js` to start server. Opens on port 3000.
+2. Run `node db/reset.js` to initialize the database
+3. Run `node server.js` to start server. Opens on port 3000.
   * Visit `http://localhost:3000/` to browse the site.
   * Run `npm run e2e` to run end-to-end testing with nightwatchjs.
 

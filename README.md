@@ -14,7 +14,7 @@
 
 ### Credentials
 
-Be sure run `node db/reset.js`.
+Be sure to run `node db/reset.js`.
 
 Email Address | Password | Account Type
 --------------|----------|-------------

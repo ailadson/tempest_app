@@ -21,8 +21,11 @@ const App = () => (
     <HeaderContainer/>
     <video src="https://assets.securetempus.com/website/efa53d066f1b3b4ad9ad0a758d8be67471a0cfe1/1457490542e9515b1fe39a53dfa5ea64.mp4"
            autoPlay
-           loop>
+           loop
+           className="home-background non-mobile-only">
     </video>
+    <img src="https://assets.securetempus.com/website/efa53d066f1b3b4ad9ad0a758d8be67471a0cfe1/b09506495b2444ff2cb8b02e47b5a4e8.png"
+         className="home-background mobile-only"/>
     <Switch>
       <AuthRoute exact path="/" component={LoginFormContainer} />
       <AuthRoute exact path="/doctor" component={LoginFormContainer} />

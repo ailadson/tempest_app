@@ -55,7 +55,7 @@ export const deleteAppointment = (data, dispatch, cb) => {
 };
 
 export const createFile = (data, dispatch, cb) => {
-  console.log(toggleLoading());
+
   dispatch(toggleLoading());
   APIUtil.createFile(data, patient => {
     dispatch(updatePatient(patient));

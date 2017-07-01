@@ -1,8 +1,17 @@
+@import 'media_query';
+
 .login-form-container {
   color: white;
   padding-left: 6em;
   display: inline-block;
   background-color: rgba(0,0,0,0.9);
+
+  @media screen and (max-width : $break-medium) {
+    height: 100%;
+    width: 100%;
+    /* text-align: center; */
+    padding: 35px;
+  }
 }
 
 .login-form-box {

@@ -202,7 +202,7 @@ class AppointmentForm extends React.Component {
 
   render() {
     let { data, doctors } = this.props;
-    console.log(new Date(data.date + " " + data.time));
+
     return (
       <div className="appointment-panel">
         {this.renderExclamation()}

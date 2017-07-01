@@ -1,18 +1,40 @@
+@import 'media_query';
+
 body, html, #root, .app-container {
   padding: 0;
   margin: 0;
   font-family: 'Raleway', sans-serif;
   height: 100%;
+  // background-color: black;
+  z-index: -2;
 }
 
 button {
   font-family: 'Raleway', sans-serif;
 }
 
-video {
+.home-background {
   position: fixed;
+  width: 100%;
+  z-index: -1;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mobile-only {
+  display: none;
+  @media screen and (max-width : $break-medium) {
+    height: 100%;
+    display: block;
+  }
+}
+
+.non-mobile-only {
+  display: block;
   min-width: 100%;
   min-height: 100%;
-  z-index: -3;
-  top: 0;
+  width: auto;
+  @media screen and (max-width : $break-medium) {
+    display: block;
+  }
 }

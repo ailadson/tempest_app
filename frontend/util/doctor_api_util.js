@@ -3,6 +3,7 @@ export const fetchDoctors = (success, error) => (
     method: 'GET',
     url: `/api/doctors`,
     dataType: 'json',
+    data: { _csrf : window.csfr },
     success,
     error
   })

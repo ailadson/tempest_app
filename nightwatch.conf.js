@@ -1,4 +1,4 @@
-require('./db/reset');
+require('./db/test_reset');
 const SCREENSHOT_PATH = "./screenshots/";
 const BINPATH = './node_modules/nightwatch/bin/';
 

@@ -1,4 +1,4 @@
-var models = require('./models')();
+var models = require('./models')('test');
 
 models.Doctor.sync({force: true}).then(() => {
   console.log('Doctor Table created!');

@@ -1,17 +1,27 @@
 # Getting Started
 
-0. Navigate to root
 1. Run `npm install`
-2. Run `./node_modules/.bin/webpack` to build the bundle file
-2. Run `node server.js` to start server. Opens on port 3000.
-3. Run `npm run e2e` to run end-to-end testing with nightwatchjs. Server must be running.
-4. Visit `http://localhost:3000/` to browse the site.
+2. Run `./node_modules/.bin/webpack` to build the bundle js file
+3. Run `node db/reset.js` to initialize the database
+4. Run `node server.js` to start server. Opens on port 3000.
+  * Visit `http://localhost:3000/` to browse the site.
+  * Run `npm run e2e` to run end-to-end testing with nightwatchjs.
+
+Use the following user credentials to log into and peruse the site.
+
+Email Address | Password | Account Type
+--------------|----------|-------------
+doc1@test.com |   p1     |  Doctor
+doc2@test.com |   p2     |  Doctor
+pat1@test.com |   p1     |  Patient
+pat2@test.com |   p2     |  Patient
+pat3@test.com |   p3     |  Patient
 
 # Tempus Code Walkthrough
 
 ### Libraries and Configurations
 
-* **package.json** - Our `package.json` lists all of our dependencies. We are using `babel` to transpile our ES6, JSX, and SCSS code. We are using the `express` framework along with some middleware, but to make the server development a little easier. And finally, we are bring in several `react` modules, which we'll use as our client framework. T
+* **package.json** - Our `package.json` lists all of our dependencies. We are using `babel` to transpile our ES6, JSX, and SCSS code. We are using the `express` framework along with some middleware, but to make the server development a little easier. And finally, we are bring in several `react` modules, which we'll use as our client framework.
 
 * **webpack.config.js** - The `webpack.config.js` just specifies that we are creating a `bundle.js` file in our `public/javascripts` directory. One thing that I want to point out is that I'm also bundling SCSS with the ES6/JSX `bundle.js` file. I really enjoy this as it allows me to import the specific CSS I need for a particular react module. This makes the CSS a lot more maintainable, in my opinion.
 
@@ -59,3 +69,9 @@
   Small Screen
   <img src="./docs/screenshot3.png" width="500">
 </center>
+
+* **User Experience Notes**
+  * Doctors can only delete their own appointments
+  * Appointments are listed in the following order: PENDING, ACCEPTED, DECLINED, PAST
+  * Doctors are altered to which patients they have pending appointments with.
+  * Loading screen for file (because it can take a while)  

@@ -2,19 +2,19 @@
 
 1. Run `npm install`
 2. Run `node db/reset.js` to initialize the database
-3. Run `node server.js` to start server. Opens on port 3000.
+4. Run `npm run test` to run end-to-end testing with nightwatchjs.
+5. Run `node server.js` to start server. Opens on port 3000.
   * Visit `http://localhost:3000/` to browse the site.
-  * Run `npm run e2e` to run end-to-end testing with nightwatchjs.
 
 Use the following user credentials to log into and peruse the site.
 
 Email Address | Password | Account Type
 --------------|----------|-------------
-doc1@test.com |   p1     |  Doctor
-doc2@test.com |   p2     |  Doctor
 pat1@test.com |   p1     |  Patient
 pat2@test.com |   p2     |  Patient
 pat3@test.com |   p3     |  Patient
+doc1@test.com |   p1     |  Doctor
+doc2@test.com |   p2     |  Doctor
 
 
 # Tempus Code Walkthrough

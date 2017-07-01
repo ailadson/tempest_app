@@ -77,7 +77,7 @@ doc2@test.com |   p2     |  Doctor
 * **Other Notes**
   * Doctors can only delete their own appointments
   * Appointments are listed in the following order: PENDING, ACCEPTED, DECLINED, PAST
-  * Doctors are altered to which patients they have pending appointments with.
+  * Doctors are alerted to which patients they have pending appointments with.
   * Loading screen. (File uploads because it can take a while).
   * Background video becomes an image of smaller screens.
   * !! **I've put a secrets.json file up on Github. I'm not that naive; I'll be changing those secrets within the week. Only doing it so you can smoothly check my work** !!

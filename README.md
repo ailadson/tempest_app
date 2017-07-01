@@ -79,5 +79,5 @@ doc2@test.com |   p2     |  Doctor
   * Appointments are listed in the following order: PENDING, ACCEPTED, DECLINED, PAST
   * Doctors are alerted to which patients they have pending appointments with.
   * Loading screen. (File uploads because it can take a while).
-  * Background video becomes an image of smaller screens.
+  * Background video becomes an image on smaller screens.
   * !! **I've put a secrets.json file up on Github. I'm not that naive; I'll be changing those secrets within the week. Only doing it so you can smoothly check my work** !!

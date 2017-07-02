@@ -202,6 +202,7 @@ class AppointmentForm extends React.Component {
 
   render() {
     let { data, doctors } = this.props;
+    let dateString = new Date(data.date + " " + data.time).toDateString();
 
     return (
       <div className="appointment-panel">
@@ -209,7 +210,7 @@ class AppointmentForm extends React.Component {
         <div>
           <span className="panel-label">
             Scheduled:
-          </span> {`${new Date(data.date + " " + data.time).toDateString()} @ ${data.time}`}
+          </span> {`${dateString} @ ${data.time}`}
         </div>
         {this.renderDoctor()}
         <div>
@@ -220,7 +221,9 @@ class AppointmentForm extends React.Component {
         <div>
           {this.renderReason() || this.renderButtons()}
         </div>
-        <Modal style={modalStyle} isOpen={this.state.declineModalOpen} contentLabel="Decline Confirm">
+        <Modal style={modalStyle}
+               isOpen={this.state.declineModalOpen}
+               contentLabel="Decline Confirm">
           <div className="form-container">
             <button onClick={this.closeAppointmentForm}>Close</button>
             <h4>Tell the paitient why you're canceling</h4>

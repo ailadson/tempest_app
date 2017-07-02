@@ -1,5 +1,5 @@
-var path = require('path');
-var Sequelize = require('sequelize');
+const path = require('path');
+const Sequelize = require('sequelize');
 
 function getDB(file){
   const sequelize = new Sequelize('database', '', '', {

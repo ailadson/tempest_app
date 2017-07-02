@@ -8,7 +8,6 @@ import {
 const defaultState = Object.freeze({
   patients : [],
   flag : false
-  // errors: []
 });
 
 const PatientReducer = (state = defaultState, action) => {

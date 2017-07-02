@@ -9,7 +9,7 @@
     "pretest": "node ./db/activate_test_mode.js; nohup node server.js &",
     "test": "./node_modules/.bin/nightwatch --config nightwatch.conf.js",
     "posttest": "node ./db/activate_dev_mode.js; kill $(ps aux | grep 'node server.js' | grep -v grep | awk '{print $2}')",
-    "prestart" : "node ./db/activate_dev_mode.js;",
+    "prestart" : "node ./db/activate_dev_mode.js",
     "start" : "node server.js"
   },
   "keywords": [],

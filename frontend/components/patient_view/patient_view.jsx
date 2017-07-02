@@ -120,12 +120,14 @@ class PatientView extends React.Component {
           <h3>Phone: {patient.phone}</h3>
           <h3>Address: {patient.mailingAddress}</h3>
         </div>
+
         <div className="patient-view-buttons">
           <button onClick={this.openAppointmentForm}>
           {type === 'doctor' ? 'Schedule Appointment' : 'Request Appointment' }
           </button>
           <button onClick={this.openFileForm}>Upload File</button>
         </div>
+        
         <DropDown component={AppointmentPanel}
                   currentUser={currentUser}
                   data={patient.appointments}

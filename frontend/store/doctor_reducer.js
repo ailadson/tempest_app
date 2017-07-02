@@ -7,10 +7,9 @@ import {
 const defaultState = Object.freeze({
   doctors : [],
   flag : false
-  // errors: []
 });
 
-const PatientReducer = (state = defaultState, action) => {
+const DoctorReducer = (state = defaultState, action) => {
   Object.freeze(state);
 
   switch(action.type) {
@@ -22,4 +21,4 @@ const PatientReducer = (state = defaultState, action) => {
   }
 };
 
-export default PatientReducer;
+export default DoctorReducer;

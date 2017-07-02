@@ -6,8 +6,10 @@ const http = require('http');
 const path = require('path');
 const route = require('./routes');
 const csrf = require('csurf');
+const favicon = require('serve-favicon')
 
-let csrfProtection = csrf({ cookie: true })
+
+let csrfProtection = csrf({ cookie: true });
 
 let app = express();
 
@@ -15,6 +17,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(cookieParser());

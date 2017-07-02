@@ -101,7 +101,7 @@ class DoctorHome extends React.Component {
           <div className={"aside-patients " + asideClassName}>
             <h2 className="aside-welcome">
               Welcome, Dr. {currentUser.lastName}
-              </h2>
+            </h2>
             <input type="text"
               className="doctor-search-bar"
               placeholder="Search By Name"
@@ -109,10 +109,12 @@ class DoctorHome extends React.Component {
             <h3>Paitents</h3>
             <ul>{this.renderPatients()}</ul>
           </div>
+
           <div className="drop-down-link" onClick={this.toggleAside}>
             {asideExpandText}
           </div>
         </aside>
+
         <section>
           <Route path={`${this.props.match.url}/:patientId`} component={PatientViewContainer} />
         </section>

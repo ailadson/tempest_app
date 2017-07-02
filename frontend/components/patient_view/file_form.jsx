@@ -73,10 +73,13 @@ class FileForm extends React.Component {
           </label>
           <br/>
           <label>
-            Upload File: 
-            <input type='file' accept=".csv, .json, .pdf, .txt, .tsv, .xml" onChange={this.onFileUpload} />
+            Upload File:
+            <input type='file' accept=".csv, .json, .pdf, .txt, .tsv, .xml"
+                   onChange={this.onFileUpload} />
             <br/>
-            <span style={{ fontSize : '.7em' }}>(.csv, .json, .pdf, .txt, .tsv, .xml)</span>
+            <span style={{ fontSize : '.7em' }}>
+              (.csv, .json, .pdf, .txt, .tsv, .xml)
+            </span>
           </label>
           <br/>
           <button onClick={this.handleSubmit}>Submit</button>

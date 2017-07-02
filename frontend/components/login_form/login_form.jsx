@@ -21,7 +21,6 @@ class SessionForm extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
-      // this.props.history.push('/');
       console.log("Logged in!");
     }
   }
@@ -59,9 +58,21 @@ class SessionForm extends React.Component {
 
   renderMessage() {
     if (this.props.path === '/') {
-      return <div className="login-msg">Patient Portal.<br/>Manage your health.</div>;
+      return (
+        <div className="login-msg">
+          Patient Portal.
+          <br/>
+          Manage your health.
+        </div>
+      );
     } else {
-      return <div className="login-msg">Doctor Portal.<br/>Manage your patients.</div>;
+      return (
+        <div className="login-msg">
+          Doctor Portal.
+          <br/>
+          Manage your patients.
+        </div>
+      )
     }
   }
 

@@ -61,7 +61,11 @@ class DropDown extends React.Component {
     return data.sort(this.sortPanels).map((d, i) => {
       return(
         <li key={i} className="drop-down-panel-container">
-          <Component data={d} doctors={doctors} currentUser={currentUser} onDelete={onDelete} onUpdate={onUpdate}/>
+          <Component data={d}
+                     doctors={doctors}
+                     currentUser={currentUser}
+                     onDelete={onDelete}
+                     onUpdate={onUpdate}/>
         </li>
       )
     });
@@ -84,9 +88,11 @@ class DropDown extends React.Component {
         <footer onClick={this.expandPanel}>
           {expanded ? 'Minimize' : 'Expand'}
         </footer>
+
         <section ref="panel">
           <ul>{this.renderData()}</ul>
         </section>
+        
         <footer onClick={this.expandPanel}>
           {expanded ? 'Minimize' : ''}
         </footer>

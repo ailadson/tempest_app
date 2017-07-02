@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/nightwatch --config nightwatch.conf.js",
     "postinstall": "node nightwatch.conf.js; ./node_modules/.bin/webpack",
     "pretest": "node ./db/activate_test_mode.js; nohup node server.js &",
-    "test": "./node_modules/.bin/nightwatch --config nightwatch.conf.js",
     "posttest": "node ./db/activate_dev_mode.js; kill $(ps aux | grep 'node server.js' | grep -v grep | awk '{print $2}')",
-    "prestart" : "node ./db/activate_dev_mode.js",
-    "start" : "node server.js"
+    "prestart": "node ./db/activate_dev_mode.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -38,6 +37,7 @@
     "redux": "^3.7.1",
     "sass-loader": "^6.0.6",
     "sequelize": "^4.2.1",
+    "serve-favicon": "^2.4.3",
     "serve-static": "^1.12.3",
     "sqlite3": "^3.1.8",
     "style-loader": "^0.18.2",

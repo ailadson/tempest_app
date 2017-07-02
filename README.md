@@ -8,7 +8,7 @@
 
 ### or use Docker
 
-* Download image from registry: `docker pull ailadson/tempus:v1`
+* Download image from registry: `docker pull ailadson/tempus:v2`
 * Run `docker run -p 3000:3000 ailadson/tempus`
 * Visit `http://localhost:3000/` to browse the site.
 

@@ -71,16 +71,17 @@ doc2@test.com |   p2     |  Doctor
 
 * **Responsive Design** - The site is designed to be responsive. Below are screenshots at different sizes:
 
-<center>
-  Large Screen
-  <img src="./docs/screenshot1.png" width="500">
-  <br/>
-  Medium Screen
-  <img src="./docs/screenshot2.png" width="500">
-  <br/>
-  Small Screen
-  <img src="./docs/screenshot3.png" width="500">
-</center>
+#### Larger Screens
+<img src="./docs/imgs/large_login.png" width="400"></img>
+<img src="./docs/imgs/large_pat_home.png" width="400"></img>
+<img src="./docs/imgs/large_doc_app.png" width="400"></img>
+<img src="./docs/imgs/large_doc_file.png" width="400"></img>
+
+####  Smaller Screens
+<img src="./docs/imgs/small_login.png" width="350"></img>
+<img src="./docs/imgs/small_doc_app.png" width="350"></img>
+<img src="./docs/imgs/small_doc_file.png" width="350"></img>
+<img src="./docs/imgs/small_doc_patview.png" width="350"></img>
 
 * **Other Notes**
   * Doctors can only delete their own appointments

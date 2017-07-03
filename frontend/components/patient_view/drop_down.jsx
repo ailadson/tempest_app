@@ -20,8 +20,9 @@ class DropDown extends React.Component {
     let aPending = !!(!a.accepted && !a.declineReason);
     let bPending = !!(!b.accepted && !b.declineReason);
 
-    if((isFile) ||
-       (aDatePassed || bDatePassed) ||
+    if ((aDatePassed || bDatePassed)) {
+      return (aDate > bDate ? -1 : 1);
+    } else if((isFile) ||
        (aPending && bPending) ||
        (a.accepted && b.accepted) ||
        (!!a.declineReason && !!b.declineReason)){
@@ -92,7 +93,7 @@ class DropDown extends React.Component {
         <section ref="panel">
           <ul>{this.renderData()}</ul>
         </section>
-        
+
         <footer onClick={this.expandPanel}>
           {expanded ? 'Minimize' : ''}
         </footer>

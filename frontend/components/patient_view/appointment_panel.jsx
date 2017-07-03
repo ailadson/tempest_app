@@ -195,9 +195,14 @@ class AppointmentForm extends React.Component {
       return this.renderDoctorExclamation(data);
     } else if(currentUser.id === data.patientId && upcoming) {
       return this.renderPatientExclamation(data);
+    } else if (!upcoming) {
+      return(
+        <span style={{ fontSize : '0.6em' }}>Past</span>
+      );
+    } else {
+      return ""
     }
 
-    return("");
   }
 
   render12hrTime (time) {
@@ -209,7 +214,6 @@ class AppointmentForm extends React.Component {
 
   render() {
     let { data, doctors } = this.props;
-    console.log(data);
     let dateString = new Date(data.date + " " + data.time).toDateString();
 
     return (

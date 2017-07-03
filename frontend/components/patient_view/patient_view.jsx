@@ -127,7 +127,7 @@ class PatientView extends React.Component {
           </button>
           <button onClick={this.openFileForm}>Upload File</button>
         </div>
-        
+
         <DropDown component={AppointmentPanel}
                   currentUser={currentUser}
                   data={patient.appointments}

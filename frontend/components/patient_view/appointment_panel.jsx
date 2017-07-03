@@ -200,8 +200,16 @@ class AppointmentForm extends React.Component {
     return("");
   }
 
+  render12hrTime (time) {
+    let hour = parseInt(time.split(":")[0]);
+    var suffix = hour >= 12 ? "PM":"AM";
+    hour = ((hour + 11) % 12 + 1);
+    return `${hour}:${time.split(":")[1]} ${suffix}`
+  }
+
   render() {
     let { data, doctors } = this.props;
+    console.log(data);
     let dateString = new Date(data.date + " " + data.time).toDateString();
 
     return (
@@ -210,7 +218,7 @@ class AppointmentForm extends React.Component {
         <div>
           <span className="panel-label">
             Scheduled:
-          </span> {`${dateString} @ ${data.time}`}
+          </span> {`${dateString} @ ${this.render12hrTime(data.time)}`}
         </div>
         {this.renderDoctor()}
         <div>

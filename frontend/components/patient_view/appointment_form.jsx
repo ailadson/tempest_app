@@ -47,6 +47,17 @@ class AppointmentPanel extends React.Component {
     return true;
   }
 
+  formatTimeForBroswerCompatability(data) {
+    if (data.time.indexOf('AM') > -1) {
+      data.time = data.time.split(" ")[0];
+    } else if (data.time.indexOf('PM') > -1) {
+      let timeSplit = data.time.split(":");
+      let hour = parseInt(timeSplit[0]);
+      hour += 12
+      data.time = `${hour}:${timeSplit[1].split(" ")[0]}`
+    }
+  }
+
   handleSubmit () {
     let { currentUser, onSubmit, match } = this.props;
     let type = match.url.split("/")[1];
@@ -59,6 +70,7 @@ class AppointmentPanel extends React.Component {
     };
     console.log(data);
     if (this.validate(data)){
+      this.formatTimeForBroswerCompatability(data.appointment);
       onSubmit(data, ()=>{console.log('created appointment!');});
     }
   }
@@ -110,13 +122,15 @@ class AppointmentPanel extends React.Component {
           <label>
             Date: <input type='date'
                          id="appointment-form-date"
-                        onChange={this.update('date')} />
+                        onChange={this.update('date')}
+                        placeholder="yyyy-mm-dd" />
           </label>
           <br/>
           <label>
             Time: <input type='time'
                          id="appointment-form-time"
-                         onChange={this.update('time')} />
+                         onChange={this.update('time')}
+                         placeholder="12:00 PM"/>
           </label>
           <br/>
           {this.renderDoctorSelect()}

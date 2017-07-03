@@ -5,7 +5,7 @@
 4. Run `npm test` to run end-to-end testing with nightwatchjs.
 5. Run `npm start` to start server. Opens on port 3000.
   * Visit `http://localhost:3000/` to browse the site.
-  * Don't run tests and start the server at the same time.
+  * Don't start the server or use the site while tests are running. This could corrupt the database. If this happens, re-run `node db/reset.js` and restart the tests.
 
 ### or use Docker
 
